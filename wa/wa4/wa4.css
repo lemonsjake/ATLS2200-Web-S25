@@ -1,0 +1,75 @@
+/* GENERAL STYLES - put these straight into your stylesheet */
+body {
+  margin: 0;
+}
+html {
+  font-family: "Helvetica neue", Arial, "sans serif";
+  font-size: 10px;
+  background-color: #ccc;
+}
+
+/* The default margin applied to the <h2> and <p> elements by the browser will interfere with our design, so write a rule that targets all these elements and sets their margin to 0. */
+h2, p {
+    margin: 0;
+}
+
+/* To stop the image from spilling out of the main business card content (the <article>element), we need to give it a specific height. Set the <article>'s height to 120px, but expressed in ems. Also give it a background color of semi-transparent black, resulting in a slightly darker shade that lets the background red color shine through a bit too. */
+article {
+    height: 12em;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Write a ruleset that targets both the card header, and card footer, giving them both a computed total height of 50px (including a content height of 30px and padding of 10px on all sides.) But express it in ems. */
+header, footer {
+    height: 3em;
+    padding: 1em;
+}
+
+/* Write a ruleset that gives the <h2> an effective font size of 20px (but expressed in ems) and an appropriate line height to place it in the center of the header's content box. Recall from earlier that the content box height should be 30px — this gives you all the numbers you need to calculate the line height. */
+h2 {
+    font-size: 2em;
+    line-height: 1.5em;
+}
+
+/* Write a ruleset that gives the <p> inside the footer an effective font size of 15px (but expressed in ems) and an appropriate line height to place it in the center of the footer's content box. Recall from earlier that the content box height should be 30px — this gives you all the numbers you need to calculate the line height. */
+footer p {
+    font-size: 1.5em;
+    line-height: 2em;
+}
+/* Give the paragraph inside the <article> an appropriate padding value so that its left edge lines up with the <h2> and footer paragraph, and set its color to be fairly light so it is easy to read. */
+article p {
+    padding: 2em 1em;
+    color: lightgray;
+}
+
+/* STYLES FOR SETUP OF CARD CONTAINER 
+- Give the main card container a fixed width/height, solid background color, border, and border-radius (rounded corners!), amongst other things.
+*/
+.card {
+  width: 35em;
+  height: 22em;
+  margin: 5em auto;
+  background-color: red;
+  border: 0.2em solid black;
+  border-radius: 1.5em;
+}
+
+/* STYLES FOR HEADER & FOOTER */
+/* Give the header a background gradient that goes from darker to lighter, plus rounded corners that fit in with the rounded corners set on the main card container. */
+.card header {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  border-radius: 1em 1em 0 0;
+}
+/* Give the footer a background gradient that goes from lighter to darker, plus rounded corners that fit in with the rounded corners set on the main card container. */
+.card footer {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  border-radius: 0 0 1em 1em;
+}
+
+/* STYLES FOR MAIN BUSINESS CARD CONTENTS 
+- Float the image to the right so that it sticks to the right-hand side of the main business card contents, and give it a max-height of 100% (a clever trick that ensures that it will grow/shrink to stay the same height as its parent container, regardless of what height it becomes.)
+*/
+.card article img {
+  max-height: 100%;
+  float: right;
+}
