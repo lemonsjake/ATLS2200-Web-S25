@@ -5,7 +5,7 @@ body {
 html {
   font-family: "Helvetica neue", Arial, "sans serif";
   font-size: 10px;
-  background-color: #ccc;
+  background-color: #ddd;
 }
 
 /* The default margin applied to the <h2> and <p> elements by the browser will interfere with our design, so write a rule that targets all these elements and sets their margin to 0. */
@@ -72,4 +72,49 @@ article p {
 .card article img {
   max-height: 100%;
   float: right;
+}
+
+
+/* MCLOVIN CARD STYLING */
+#mclovin {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: white;
+}
+#mclovin header {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(22, 102, 156);
+  text-shadow: black 0.15em 0.125em;
+  background: white;
+  border-radius: 1.5em 1.5em 0 0;
+}
+#mclovin footer {
+  background: white;
+  border-radius: 0 0 1.5em 1.5em;
+}
+#mclovin article p {
+  color: black;
+  background-image: linear-gradient(to bottom, red 0, orange, yellow, rgb(117, 216, 104), rgb(76, 190, 235), rgb(84, 92, 212), rgb(128, 61, 177) 100%);
+  padding: 0.5em 1em;
+}
+
+
+/* LEMONS CARD STYLING */
+#lemons {
+  color: white;
+  background-color: black;
+  border: 0.2em solid rgb(255, 255, 255);
+}
+#lemons header {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+#lemons footer {
+  font-family: cursive;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
+}
+#lemons article p {
+  font-family: 'OCR A Std', monospace;
+  color: white;
+  background-color: black;
+  padding: 1em;
 }
