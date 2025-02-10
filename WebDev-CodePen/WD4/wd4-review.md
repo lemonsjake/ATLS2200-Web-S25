@@ -8,7 +8,7 @@
 
 ### Reflection
   - The short answer to what drew me to this particular CodePen is that I just love waves and it was a pleasant surprise when I clicked on this CodePen and found that the waves simply scaled with text.
-    The long answer is that there's a lot of the same types of tools and code on Spark CodePens. It's difficult to find truly unique things that are ALSO scalable / easy to implement.
+  - The long answer is that there's a lot of the same types of tools and code on Spark CodePens. It's difficult to find truly unique things that are ALSO scalable / easy to implement.
     Another piece that drew me to this CodePen was that it was made by someone I hadn't seen other CodePens from. That is to say, there are some people on CodePen that are always in the 'popular' section and they have they're own layout/theme and coding practices.
     Some of them use almost exclusively div elements while others use sections and more. On the plus-side, these are usually high-quality CodePens that work well and are interesting. 
     The negatives though are that these CodePens feel washed-out or overused, or they're the opposite and too niche to easily modify with only beginner/intermediate web dev skills.
