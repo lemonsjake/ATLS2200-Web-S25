@@ -1,0 +1,24 @@
+<!-- Originally sourced from https://codepen.io/tomhermans/pen/qEWvxKL by @tomhermans -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>//</title>
+    <link rel="stylesheet" href="static-noise.css" />
+  </head>
+
+  <body>
+    <div class="static-noise"></div>
+    <h1>nothing on tv</h1>
+
+    <svg width="0" height="0" aria-hidden="true">
+      <filter id="dither" primitiveUnits="objectBoundingBox">
+        <feTurbulence type="fractalNoise" baseFrequency="4.71"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" scale=".52"></feDisplacementMap>
+        <feBlend in2="SourceGraphic"></feBlend>
+      </filter>
+    </svg>
+  </body>
+</html>
