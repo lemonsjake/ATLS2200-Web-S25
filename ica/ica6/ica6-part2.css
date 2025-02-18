@@ -44,29 +44,38 @@ body{
     grid-column-end: 3;
 }
 #no1{
-
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 #no2{
-
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
 #no3{
-
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 #no4{
-
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 #no5{
-
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
 #no6{
-
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 #no7{
-
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 #no8{
-
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
 #no9{
-
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
