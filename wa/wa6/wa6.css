@@ -1,0 +1,103 @@
+body {
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    font: 1.2em / 1.2 Arial, Helvetica, sans-serif;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.logo {
+    font-size: 200%;
+    padding: 50px 20px;
+    margin: 0 auto;
+    max-width: 980px;
+}
+
+.grid {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 980px;
+    /* below added */
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* blog post col (3fr) 3x width of phtography col (1fr) */
+    grid-template-rows: 1fr; /* this grid only needs 1 row */
+}
+
+nav {
+    background-color: #000;
+    padding: .5em;
+    /* below added */
+    position: sticky;
+    top: 0px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* below added */
+    display: flex;
+}
+
+/* below (nav li) added */
+nav li {
+    flex-grow: 1;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: .5em 1em;
+}
+
+.photos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* below added */
+    display: grid; /* grid fits w/in prev defined l-unit grid section from .grid */
+    grid-template-columns: 1fr 1fr; /* 2 cols, evenly sized */
+    gap: 1px; /* required 1px margin between grid cols and rows */
+}
+
+.feature {
+    width: 200px;
+    /* below added */
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+/* below (article) added */
+article {
+    grid-column: 1;   
+}
+
+/* below (aside) added */
+aside {
+    grid-column: 2;
+}
+
+/* below (media query) added */
+@media (max-width: 500px) {
+    .grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .photos {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
