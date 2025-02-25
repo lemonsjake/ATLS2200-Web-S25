@@ -1,8 +1,11 @@
+/* Originally sourced from https://codepen.io/vedzzb/pen/KwPvNQj by @vedzzb */
+
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: boder-box;
-  font-family: "Poppins", serif;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  /* CHANGED font from Poppins to Calibri */
+  text-align: center;  /* CHANGED text to be centered */
 }
 
 body {
@@ -10,7 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #1d031f;
+  background: radial-gradient(#1d031f 33%, #000000);  /* CHANGED solid #1d031f to radial gradient into blk */
 }
 .container {
   position: relative;
@@ -24,8 +27,8 @@ body {
 
 .container .box {
   position: relative;
-  height: 400px;
-  width: 280px;
+  height: 406px;  /* CHANGED 400px to 406px to fit 5x7 aspect ratio */
+  width: 290px;  /* CHANGED 280px to 290px to fit 5x7 aspect ratio */
   background: #fff;
   border-radius: 20px;
 }
@@ -43,7 +46,7 @@ body {
   inset: 0;
   border-radius: 20px;
   background: #f00;
-  filter: blur(16px);
+  filter: blur(32px) saturate(150%);  /* CHANGED blur from 16px to 32px, ADDED 150% saturation */
 }
 .container .box b {
   padding: 30px;
@@ -53,12 +56,14 @@ body {
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.75);
   z-index: 2;
+  /* background-image: url("elbow-home-nyc-5x7.jpg"); */
+  /* background-image: url("prof-studio-nyc-5x7.jpg"); */
+  /* background-image: url("front-subway-nyc-5x7.jpg"); */
 }
-
 .container .box b p {
   font-weight: 200;
   color: #fff;
-  text-shadow: 0 0 15px #fff;
+  text-shadow: 0 0 12px #fff;
 }
 
 .container .box:nth-child(1)::before,
