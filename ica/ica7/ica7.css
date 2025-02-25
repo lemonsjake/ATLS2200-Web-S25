@@ -1,0 +1,65 @@
+body{
+    background-color: khaki;
+}
+
+#box1{
+    width: 25vw;
+    height: 20vh;
+    background-color: indianred;
+    transition: background-color 2s;
+}
+/* step 1 for box1: put pseudo-class in */
+#box1:hover {
+    background-color: purple;
+}
+
+#box2{
+    width: 25vw;
+    height:20vh;
+    position: relative;
+    background-color: orangered;
+    animation-name: box2move;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+@keyframes box2move{
+    0% {
+        /* ignore because we'll let this just be the start */
+        /* translate: 0 0; */
+        
+        top: 0;
+        left: 0;
+    }
+
+    25% {
+        /* move right 50vw */
+        /* translate: 50vw 0; */
+        
+        top: 0;
+        left: 50vw;
+    }
+
+    50% {
+        /* move down 50vw */
+        /* translate: 50vw 50vw; */
+        
+        top: 50vh;
+        left: 50vw;
+    }
+
+    75% {
+        /* move right 50vw */
+        /* translate: 50vw 0; */
+
+        top: 50vh;
+        left: 0;
+    }
+
+    100% {
+        /* move right 50vw */
+        /* translate: 50vw 0; */
+
+        top: 0;
+        left: 0;
+    }
+}
