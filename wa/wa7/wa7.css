@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: gold;
+  font-family: "Courier New", Courier, monospace;
+}
+nav {
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 20px;
+  background-color: black;
+}
+nav a {
+  width: 10vw;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+img {
+  width: 30vw;
+  height: 30vh;
+  animation-name: groove;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  /* animation: groove 1s infinite alternate */
+}
+@keyframes groove {
+    0% {
+        top: 0vh;
+        right: 0vw;
+    }
+    100% {
+        top: 10vh;
+        right: 20vw;
+    }
+}
+
+#neon-circle {
+  background-color: black;
+  background: radial-gradient(black, gold, black);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  left: 5vw;
+  top: 0;
+}
