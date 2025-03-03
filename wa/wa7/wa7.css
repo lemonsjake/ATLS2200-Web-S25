@@ -6,7 +6,6 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 nav {
-  height: 50vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,30 +27,43 @@ img {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  animation-timing-function:cubic-bezier(0.67, 0, 0.33, 1);
-  /* SHORTHAND animation: cubic-bezier(0.67, 0, 0.33, 1) 1s infinite alternate groovn*/
+  animation-timing-function: cubic-bezier(0.67, 0, 0.33, 1);
+  /* SHORTHAND animation: groovn 1s cubic-bezier(0.67, 0, 0.33, 1) infinite alternate*/
 }
 @keyframes groovn {
-    0% {
-      transform: rotate(30deg);
-    } 
-    50% {
-      transform: rotate(-30deg);
-    }
-    100% {
-      transform: rotate(30deg);
-    }
+  0% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
 }
 
-#neon-circle {
-  background-color: black;
-  background: radial-gradient(black, gold, black);
-  width: 25px;
-  height: 25px;
+#ball-o-candy {
+  background: radial-gradient(white, gold, black);
+  width: 10vw;
+  height: 10vw;
+  font-size: 100%;
   border-radius: 50%;
+  border-style: dotted;
+  border-color: white;
   position: absolute;
-  left: 5vw;
-  top: 0;
+  text-align: center;
+  align-content: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  left: 2vw;
+  top: 75px;
+  transition: background, width, height, font-size, border-style; /* hover-for-candy */
+}
+#ball-o-candy:hover {
+  background: center / contain no-repeat url(candy-maybe.png);
+  width: 11vw;
+  height: 11vw;
+  font-size: 0;
+  border-style: none;
 }
 
-/* add either throbbing glow w/ "CLICK ME!" to circle to incentivize click, then on click, circle swoops over to other side, inverses colors, and whole page inverses color scheme */
+/* add shrek-mode hover or useless button on right, same size as candy-hover ?? */
