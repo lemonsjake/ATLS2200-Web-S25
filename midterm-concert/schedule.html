@@ -6,20 +6,64 @@
     <link rel="stylesheet" href="schedule.css">
     <title>Void Pulse Collective - Orchestra Concerts Schedule</title>
 </head>
-<body id="mobileScreen">
-    <h1>SCREEN SIZE TEST</h1>
-    <h2>CONCERT 1: COSMIC SENSORY CONVERGENCE: STELLAR VOYAGE</h2>
-    <h3><strong>Stardate 2025.108-109</strong> | Harmonic Alignment: 22:00</h3>
-    <h4>Conductor: <strong>Multi-Dimensional Maestro ZEROX-9</strong></h4>
-    <h4>Repertoire: "CELESTIAL BODIES IN MOTION," "GRAVITATIONAL HARMONICS," "GALACTIC SYNTHESIS," "INTERSTELLAR JOURNEY," "COSMIC ENLIGHTENMENT"</h4>
-    <h5><strong>The Crystal Nebula, <em>Interdimensional Sound Pavilion</em></strong></h5>
-    <div>
-        The enigmatic <strong>ZEROX-9</strong>, whose conducting technique has been described as "transcendentally mesmerizing" across seven galaxies, guides the vibrant collective known as the ZΩRBLAXian VOID PULSE COLLECTIVE through an evening of cosmic wonder. Experience the breathtaking premiere of "CELESTIAL BODIES IN MOTION," a suite that builds from delicate whispers to magnificent crescendos, performed on instruments crafted from rare metals found only on distant moons and responsive to audience brainwave patterns. The repertoire explores the hidden dimensions of the universe with compositions including "GRAVITATIONAL HARMONICS" (featuring synchronized breathing techniques), "GALACTIC SYNTHESIS" (where sound waves create visual phenomena throughout the venue), and "INTERSTELLAR JOURNEY" (causing spontaneous neural connections across multiple dimensions). The night culminates in "COSMIC ENLIGHTENMENT"—an immersive experience where sound transcends auditory perception and transforms consciousness itself. Private resonance chambers available for those seeking enhanced acoustic experiences. Dress code: Reflective, light-responsive attire recommended for optimal visual integration. Molecular refreshments from distant star systems served at intermission.
-    </div>
+<body class="mobileScreen"><!-- MAYBE JUST DO "SCREEN" AND THEN SEPERATE IN CSS BY DEFAULT/LAPTOP VS MOBILE MEDIA QUERIES -->
+    <section id="pg-title-box">
+        <h1 id="pg-title">ZΩRBLAXian VOID PULSE COLLECTIVE</h1>
+            <div id="pg-sub-title">Concert Descriptions Compilation</div>  <!-- MAYBE DOESN'T NEED ID -->
+    </section>
+
+    <section id="concert-schedule">
+        <div id="1-concert">
+            <h2 class="concertName">CONCERT 1: COSMIC SENSORY CONVERGENCE: STELLAR VOYAGE</h2>  <!-- COULD ALSO JUST USE "h2" AS CLASS INSTEAD OF SPECIFYING CLASS -->
+            <h3 class="concertDateTime"><strong>Stardate 2025.108-109 | Harmonic Alignment: 22:00</strong></h3>
+            <h4 class="concertConductor">Conductor: <strong>Multi-Dimensional Maestro ZEROX-9</strong></h4>
+            <h4 class="concertSongs">Repertoire: "CELESTIAL BODIES IN MOTION," "GRAVITATIONAL HARMONICS," "GALACTIC SYNTHESIS," "INTERSTELLAR JOURNEY," "COSMIC ENLIGHTENMENT"</h4>
+            <h5 class="concertLocation"><strong>The Crystal Nebula, <em>Interdimensional Sound Pavilion</em></strong></h5>
+            <p class="concertDescription">
+                The enigmatic <strong>ZEROX-9</strong>, whose conducting technique has been described as "transcendentally mesmerizing" across seven galaxies, guides the vibrant collective known as the ZΩRBLAXian VOID PULSE COLLECTIVE through an evening of cosmic wonder. Experience the breathtaking premiere of "CELESTIAL BODIES IN MOTION," a suite that builds from delicate whispers to magnificent crescendos, performed on instruments crafted from rare metals found only on distant moons and responsive to audience brainwave patterns. The repertoire explores the hidden dimensions of the universe with compositions including "GRAVITATIONAL HARMONICS" (featuring synchronized breathing techniques), "GALACTIC SYNTHESIS" (where sound waves create visual phenomena throughout the venue), and "INTERSTELLAR JOURNEY" (causing spontaneous neural connections across multiple dimensions). The night culminates in "COSMIC ENLIGHTENMENT"—an immersive experience where sound transcends auditory perception and transforms consciousness itself. Private resonance chambers available for those seeking enhanced acoustic experiences. Dress code: Reflective, light-responsive attire recommended for optimal visual integration. Molecular refreshments from distant star systems served at intermission.
+            </p>  <!-- MAYBE MAKE DIV ?? -->
+        </div>
+
+        <div id="2-concert">
+            <!-- // -->
+        </div>
+
+        <div id="3-concert">
+            <!-- // -->
+        </div>
+
+        <div id="4-concert">
+            <!-- // -->
+        </div>
+
+        <div id="5-concert">
+            <!-- // -->
+        </div>
+
+        <div id="6-concert">
+            <!-- // -->
+        </div>
+
+        <div id="7-concert">
+            <!-- // -->
+        </div>
+
+        <div id="8-concert">
+            <!-- // -->
+        </div>
+
+        <div id="9-concert">
+            <!-- // -->
+        </div>
+
+        <div id="10-concert">
+            <!-- // -->
+        </div>
+    </section>
 </body>
 </html>
 
-<!-- NEED TO MAKE INTO .MD FILE -->
+<!-- MAKE SURE TO CHANGE QUOTE MARKS, THEY'LL CURRENT FORM WILL CAUSE ERRORS IN W3C -->
  
 <!-- 
 MUSIC TOUR SCHEDULE EXAMPLES:
