@@ -1,3 +1,78 @@
+* {
+    /* background: black; */
+    /* color: rgb(240, 180, 255);
+    color: rgb(200, 180, 255);
+    color: rgb(120, 220, 255); */
+}
+body {
+    color: white;
+    background-image: linear-gradient(90deg, black, white, black);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-shadow: 0px 0px 0.6em rgb(200, 40, 255), 0 0 0.2em rgb(0, 125, 255);
+    /* text-shadow: 0px 0px 0.6rem rgb(200, 40, 255), 0 0 0.2rem rgb(0, 125, 255); */
+    display: flexbox;
+}
+
+#pg-title-container {
+    background: green;
+    align-content: center;
+    text-align: center;
+}
+#pg-title {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#pg-sub-title {
+    /* // */
+}
+
+#concert-schedule {
+    /* // */
+}
+
+#concert-1 {
+    /* // */
+}
+
+.concertName {
+    /* // */
+}
+
+.concertDateTime {
+    /* // */
+}
+
+.concertConductor {
+    /* // */
+}
+
+.concertSongs {
+    /* // */
+}
+
+.concertLocation {
+    /* // */
+}
+
+.concertDescriptionContainer {
+    /* background-color: blue; */
+    backdrop-filter: blur(5em);
+    padding: 0 10%;
+    box-sizing: content-box;  /* NOT SURE WHAT THIS CHANGES !! */
+    box-shadow: 0 0 0.5em 0.5em red;
+    border: solid white 0.5em;
+    text-align: center;
+}
+/* CHANGE CONCERT DESCRIPTION TO CONCERT DESCRIPTION CONTAINER FOR ALL !! */
+.concertDescription {
+    /* background-color: blue; */
+    backdrop-filter: blur(5em);
+    padding: 0 10%;
+    box-sizing: content-box;  /* NOT SURE WHAT THIS CHANGES !! */
+    box-shadow: 0 0 0.5em 0.5em red;
+    border: solid white 0.5em;
+    text-align: center;
+}
+
 .laptopScreen {
     background-color: white;
     font-family: 'Courier New', Courier, monospace;
