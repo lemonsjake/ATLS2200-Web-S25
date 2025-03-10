@@ -1,0 +1,36 @@
+* {
+    border: 2px solid red;
+}
+
+body {
+    display: flex;
+    /* display: flexbox; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vw;
+    color: white;
+    padding: 24px;
+}
+
+.sampleConcerts {
+    background: green;
+    width: 80%;
+    /* aspect-ratio: 1/1; */
+    border-radius: 24px;
+    /* overflow: hidden; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.concert {
+    background-color: blue;
+    padding: 24px;
+    /* width: fit-content; */
+    /* height: fit-content; */
+
+    
+}
