@@ -3,6 +3,8 @@
     font-family: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+/* flex child = DIRECT child, not inherited by subchild */
 body {
     color: white;
     /* background-image: linear-gradient(90deg, black, white, black); */

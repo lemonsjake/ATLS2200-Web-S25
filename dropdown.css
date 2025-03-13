@@ -1,0 +1,45 @@
+html {
+    background: black;
+}
+
+body {
+    color: white;
+}
+
+nav {
+    /* background-color: #000; */
+    /* padding: .5em; */
+    position: sticky;
+    /* top: 0px; */
+}
+
+nav ul {
+    /* margin: 0; */
+    /* padding: 0; */
+    list-style: none;
+}
+
+/* below (nav li) added */
+nav li {
+    /* flex-grow: 1; */
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+nav a {
+    color: #fff;
+    /* text-decoration: none; */
+    /* padding: .5em 1em; */
+}
+
+
+
+
+/* @keyframes dropDown {
+    0% {
+    }
+    100% {
+    }
+} */
+
+/* hover changes child elements' display from 'none' to something else, like block */
