@@ -1,39 +1,438 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Chathura:wght@100;300;400;700;800&family=Genos:ital,wght@0,100..900;1,100..900&family=Goldman:wght@400;700&family=Jura:wght@300..700&family=Oxanium:wght@200..800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+/* Jura */
+.juraLight {
+  font-family: "Jura", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+.juraRegular {
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.juraBold {
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+/* Chathura */
+.chathuraThin {
+  font-family: "Chathura", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+.chathuraLight {
+  font-family: "Chathura", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.chathuraRegular {
+  font-family: "Chathura", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.chathuraBold {
+  font-family: "Chathura", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.chathuraExtrabold {
+  font-family: "Chathura", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+/* Bruno Ace SC */
+.brunoAceScRegular {
+  font-family: "Bruno Ace SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* Oxanium */
+.oxaniumLight {
+    font-family: "Oxanium", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+.oxaniumRegular {
+    font-family: "Oxanium", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.oxaniumBold {
+    font-family: "Oxanium", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+/* Genos */
+.genosThin {
+  font-family: "Genos", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+.genosRegular {
+  font-family: "Genos", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.genosBold {
+  font-family: "Genos", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+/* Goldman */
+.goldmanRegular {
+  font-family: "Goldman", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.goldmanBold {
+  font-family: "Goldman", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+/* Rajdhani */
+.rajdhani-light {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.rajdhani-regular {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.rajdhaniMedium {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.rajdhaniBold {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+/* BASIC */
 html {
-    background: black;
+    /* margin: 0;
+    padding: 0; */
+  background-color: green;
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
     color: white;
+    font-family: 'Jura', 'Chathura', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-nav {
-    /* background-color: #000; */
-    /* padding: .5em; */
-    position: sticky;
-    /* top: 0px; */
+#pg-home {
+    margin: 0;
+    border: 1vw red solid;
+    padding: 2% 5%;
+    text-align: center;
 }
+#pg-title {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    /* font-family: 'Jura'; */
+    font-family: 'Bruno Ace SC';
+}
+#pg-subtitle {
+    margin: 0;
+    padding: 0;
+    /* line-height: 1rem; */
+    font-size: 1em;
+    font-family: 'Bruno Ace SC';
+    font-family: 'Goldman';
+    font-family: 'Oxanium';
+}
+
+/* NAV BAR */
+/* https://charlesfreeborn.medium.com/how-to-build-a-responsive-nav-using-css-flexbox-3511cd936af9 */
+nav {
+  background-color: #000;
+  border: 1vw white solid;
+  /* padding: .5em; */
+  position: sticky;
+  /* top: 0px; */
+
+}
+
+/* !! FIX -- content not centered in nav bar */
 
 nav ul {
-    /* margin: 0; */
-    /* padding: 0; */
-    list-style: none;
+    width: 100%;
+    height: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
 }
 
-/* below (nav li) added */
 nav li {
-    /* flex-grow: 1; */
-    text-align: center;
-    justify-content: space-evenly;
+    /* flex-shrink: 1;
+    flex-grow: 1; */
+  text-align: center;
+  /* font-size-adjust: x-ht; */
+  font-size: 1.25vw;
 }
 
 nav a {
+    margin: 0;
+    padding: 1em;
     color: #fff;
-    /* text-decoration: none; */
-    /* padding: .5em 1em; */
+    text-align: center;
+  text-decoration: none;
+  /* padding: .5em 1em; */
+}
+
+/* li.navDrop {
+} */
+.navDropInfo {
+    display: none;
 }
 
 
+.concertsSchedule {
+    margin: 0;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 
+.concert{
+    margin: 0;
+    border: 1vw yellow solid;
+    padding: 2.5vh 5%;
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    align-items: center;
+    text-align: center;
+}
+
+.concertNum {
+    margin: 0;
+    padding: 0.5rem 0.25rem 0.25rem 0.25rem;
+    font-size: 1em;
+    font-weight: normal;
+}
+.concertName {
+    margin: 0;
+    padding: 0.25rem 0.25rem 0.75rem 0.25rem;
+    font-size: 1.5em;
+}
+
+.concertDateTime {
+    /* width: 85%; */
+    margin: 0;
+    padding: 0.75rem 0.25rem;
+    font-size: 1em;
+    /* display: flex;
+    justify-content: space-between;
+    flex-grow: 1; */
+    /* column-gap: 2em; */
+}
+.concertDate {
+    margin: 0;
+    padding: 0;
+    /* float: left; */
+}
+.concertTime {
+    margin: 0;
+    padding: 0;
+    /* float: right; */
+}
+
+.concertVenue {
+    margin: 0;
+    padding: 0.75rem 0.25rem;
+    font-style: italic;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; */
+    /* display: flex; */
+
+    /* justify-content: center; */
+    /* column-gap: 1em; */
+}
+.venueInline {
+    margin: 0;
+    padding: 0;
+}
+.venueGeneral {
+    margin: 0;
+    padding: 0;
+    display: none;
+    /* grid-column: 1/1;
+    grid-row: 1/1;
+    justify-self: right; */
+}
+.venueSpecific {
+    margin: 0;
+    padding: 0;
+    display: none;
+    /* grid-column: 2/2;
+    grid-row: 2/2;
+    justify-self: left; */
+}
+
+.concertConductor {
+    margin: 0;
+    padding: 0.75rem 0.25rem;
+}
+.conductor {
+    margin: 0;
+    padding: 0;
+    font-weight: 100;
+}
+.conductorName {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+}
+
+.concertRepertoire {
+    margin: 0;
+    padding: 0.75rem 0.25rem;
+}
+.repertoire {
+    margin: 0;
+    padding: 0;
+    font-weight: 100;
+}
+.songsList {
+    margin: 0;
+    padding: 0;
+    /* font-weight: 500; */
+}
+/* MAYBE GET RID OF "SONG" CLASS FOR INDIVIDUAL SONGS ?? */
+
+.concertDescription {
+    margin: 0;
+    padding: 0.75rem 0.5rem;
+}
+.concertDescription p {
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+}
+p.descriptionNote {
+    margin: 0;
+    padding: 0.75rem 1rem 0.5rem 1rem;
+}
+
+
+.concertDropInfo {
+    display: none;
+}
+.concert:hover .concertDropInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.spanBold {
+    font-weight: 700;
+}
+.spanItalic {
+    font-style: italic;
+}
+
+
+footer {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+button {
+    margin: 0;
+    /* border */
+    /* padding: 0; */
+}
+
+
+/* @media (max-width: ) */
+@media (max-width: 440px) {
+    .venueInline {
+        display: none;
+    }
+    .venueGeneral, .venueSpecific {
+        display: block;
+    }
+}
+
+/* TO-DO
+    - * Style Concert Main Info
+        - Style concerts' 1 & 3 descriptions
+        - Add concerts 4-10
+    - * Fonts
+    - * Background
+    - * Style Footer
+        - alien font
+    - * Neon Glow
+    - * Fix Sticky Nav
+    - * Mobile Media Queries
+    - Pulsate Hover Animation
+    - Nav Dropdowns Transitions
+*/
+
+/* 
+<section class="concertsSchedule">
+        <div class="concert" id="concert-1">
+            <h2 class="concertNum">CONCERT 1:</h2>
+            <h2 class="concertName">COSMIC SENSORY CONVERGENCE: STELLAR VOYAGE</h2>
+            <div class="concertDateTime">
+                <div class="concertDate">Stardate <span class="spanBold">2025.108-109</span></div>
+                <div class="concertTime">Harmonic Alignment: <span class="spanBold">22:00</span></div>
+            </div>
+            <div class="concertVenue">
+                <!-- __WEB__ in-line -->
+                <!-- __MOBILE__ specific under general -->
+                <div class="venueGeneral">The Crystal Nebula,</div>
+                <div class="venueSpecific">Interdimensional Sound Pavilion</div>
+            </div>
+            <div class="concertConductor">
+                <!-- __WEB__ in-line -->
+                <!-- __MOBILE__ name under conductor tag -->
+                <div class="conductor">Conductor:</div>
+                <div class="conductorName">Multi-Dimensional Maestro ZEROX-9</div> <!-- BOLD NAME, NOT THEIR 'TITLE' -->
+            </div>
+            <div class="concertDropInfo">
+                <div class="concertRepertoire">
+                    <div class="repertoire">Repertoire:</div>
+                    <div class="songsList">
+                        <!-- __WEB__ all in-line -->
+                        <!-- __MOBILE__ one per line -->
+                        <div class="song">"CELESTIAL BODIES IN MOTION,"</div>
+                        <div class="song">"GRAVITATIONAL HARMONICS,"</div>
+                        <div class="song">"GALACTIC SYNTHESIS,"</div>
+                        <div class="song">"INTERSTELLAR JOURNEY,"</div>
+                        <div class="song">"COSMIC ENLIGHTENMENT"</div>
+                    </div>
+                </div>
+                <div class="concertDescription">
+                    <p>The enigmatic <span class="spanBold">ZEROX-9</span>, whose conducting technique has been described as "transcendentally mesmerizing" across seven galaxies, guides the vibrant collective known as the ZΩRBLAXian VOID PULSE COLLECTIVE through an evening of cosmic wonder. Experience the breathtaking premiere of "CELESTIAL BODIES IN MOTION," a suite that builds from delicate whispers to magnificent crescendos, performed on instruments crafted from rare metals found only on distant moons and responsive to audience brainwave patterns. The repertoire explores the hidden dimensions of the universe with compositions including "GRAVITATIONAL HARMONICS" (featuring synchronized breathing techniques), "GALACTIC SYNTHESIS" (where sound waves create visual phenomena throughout the venue), and "INTERSTELLAR JOURNEY" (causing spontaneous neural connections across multiple dimensions). The night culminates in "COSMIC ENLIGHTENMENT"—an immersive experience where sound transcends auditory perception and transforms consciousness itself. Private resonance chambers available for those seeking enhanced acoustic experiences. Dress code: Reflective, light-responsive attire recommended for optimal visual integration. Molecular refreshments from distant star systems served at intermission.</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+*/
 
 /* @keyframes dropDown {
     0% {
@@ -43,3 +442,19 @@ nav a {
 } */
 
 /* hover changes child elements' display from 'none' to something else, like block */
+
+/* CONCERTS SCHEDULE */
+/* 
+general
+    title_m-h2 (fC) << CNCRT_d (fP) << SCHED_s (fP ??)  (3)
+    dtTm_m-d (fC) << conDtTm_d << CNCRT_d (fP) << SCHED_s (fP ??)  (4)
+    venue_m-d (fC) << conVenue_d << CNCRT_d (fP) << SCHED_s (fP ??)  (4)
+    conductor_m-d (fC) << conConductor_d << CNCRT_d (fP) << SCHED_s (fP ??)  (4)
+expandDetailsInfo
+    songs_m-d (fC) << songsList_d, rep_d << conRepertoire_d << expandDetailsInfo_d << CNCRT_d (fP) << SCHED_s (fP ??)  (6)
+    dscrptn_p (fC ??) << conDscrptn_d << expandDetailsInfo_d << CNCRT_d (fP) << SCHED_s (fP ??)  (5)
+
+    (MAY ENCOUNTER ISSUES BECAUSE OF SPANS, BUT NOT SURE)
+
+SCHED flex-p
+*/
