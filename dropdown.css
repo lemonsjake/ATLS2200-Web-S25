@@ -1,5 +1,5 @@
-/* FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Chathura:wght@100;300;400;700;800&family=Genos:ital,wght@0,100..900;1,100..900&family=Goldman:wght@400;700&family=Jura:wght@300..700&family=Oxanium:wght@200..800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+/* --FONTS-- */
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Anta&family=Bruno+Ace+SC&family=Bungee+Hairline&family=Chathura:wght@100;300;400;700;800&family=Genos:ital,wght@0,100..900;1,100..900&family=Goldman:wght@400;700&family=Jura:wght@300..700&family=Megrim&family=Oxanium:wght@200..800&family=Rajdhani:wght@300;500;700&family=Sankofa+Display&display=swap');
 /* Jura */
 .juraLight {
   font-family: "Jura", sans-serif;
@@ -18,6 +18,24 @@
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+}
+/* Megrim */
+.megrimRegular {
+  font-family: "Megrim", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+/* Anta */
+.antaRegular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* Bungee Hairline */
+.bungeeHairlineRegular {
+  font-family: "Bungee Hairline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 /* Chathura */
 .chathuraThin {
@@ -100,15 +118,21 @@
   font-weight: 700;
   font-style: normal;
 }
-/* Rajdhani */
-.rajdhani-light {
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 300;
+/* Alumni Sans Pinstripe */
+.alumniSansPinstripeRegular {
+  font-family: "Alumni Sans Pinstripe", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }
-.rajdhani-regular {
-  font-family: "Rajdhani", sans-serif;
+.alumniSansPinstripeRegularItalic {
+  font-family: "Alumni Sans Pinstripe", sans-serif;
   font-weight: 400;
+  font-style: italic;
+}
+/* Rajdhani */
+.rajdhaniLight {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 300;
   font-style: normal;
 }
 .rajdhaniMedium {
@@ -121,51 +145,85 @@
   font-weight: 700;
   font-style: normal;
 }
+/* Sankofa Display */
+.sankofaDisplayRegular {
+  font-family: "Sankofa Display", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* SystemUI Thin (used for Greek Omega) */
+.spanFontSystemUiThin {
+    font-family: system-ui;
+    font-weight: 100;
+    font-style: normal;
+}
 
 
-/* BASIC */
+/* --GENERAL-- */
+* {
+    /* --top-color: rgb(200, 0, 255); */
+    --top-color: rgb(0, 195, 255);
+    --under-color: rgb(120, 0, 255);
+    --select-color: rgb(225, 100, 255);
+}
 html {
     /* margin: 0;
     padding: 0; */
-  background-color: green;
+    /* background-color: green; */
+    /* background-color: #000; */
+    /* background-image: url(blue-tall-star-bg.jpg); */
+    /* background-image: url(blue-tall-star-bg.jpg);
+    background-position: top center;
+    background-size: contain bottom; */
+    background-color: black;
+    /* transform: translateZ(); */
+    /* background:
+  center / contain no-repeat
+    url("/shared-assets/images/examples/firefox-logo.svg"),
+  #eee 35% url("/shared-assets/images/examples/lizard.png"); */
 }
-
 body {
     margin: 0;
     padding: 0;
-    background-color: black;
+    /* background-color: black; */
     color: white;
-    font-family: 'Jura', 'Chathura', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Jura', 'Oxanium', 'Lucida Sans Unicode', Geneva, system-ui;
 }
 
+
+/* --PAGE HEADING-- */
 #pg-home {
-    margin: 0;
-    border: 1vw red solid;
-    padding: 2% 5%;
+    margin: 1.5em;
+    border-top: 0.25em white solid;
+    border-radius: 10em;
+    padding: 2rem;
+    box-shadow: inset 0em 2em 1em -1em var(--under-color), 0em -1em 1.5em -1em var(--under-color), 0em -1em 1.5em -1.25em var(--under-color);
     text-align: center;
 }
 #pg-title {
     margin: 0;
     padding: 0;
-    font-size: 2em;
-    /* font-family: 'Jura'; */
-    font-family: 'Bruno Ace SC';
+    font-size: 500%;
+    text-shadow: 0 0 0.05em var(--select-color), 0 0 0.1em var(--select-color), 0 0 0.15em var(--under-color), 0 0 0.25em var(--under-color), 0 0 0.5em var(--top-color);
 }
 #pg-subtitle {
     margin: 0;
-    padding: 0;
-    /* line-height: 1rem; */
-    font-size: 1em;
-    font-family: 'Bruno Ace SC';
-    font-family: 'Goldman';
-    font-family: 'Oxanium';
+    padding: 0.25em;
+    line-height: 1em;
+    font-size: 2em;
+    font-weight: 200;
+    text-shadow: 0 0 0.05em var(--select-color), 0 0 0.1em var(--select-color), 0 0 0.15em var(--under-color), 0 0 0.25em var(--under-color), 0 0 0.5em var(--top-color);
+    /* filter: drop-shadow(0 0 0.2em var(--under-color));
+    text-shadow: 0 0 0.05em var(--select-color), 0 0 0.15em var(--top-color); */
+    /* font-weight: 200; */
 }
+
 
 /* NAV BAR */
 /* https://charlesfreeborn.medium.com/how-to-build-a-responsive-nav-using-css-flexbox-3511cd936af9 */
 nav {
   background-color: #000;
-  border: 1vw white solid;
+  border: 0.25em white solid;
   /* padding: .5em; */
   position: sticky;
   /* top: 0px; */
@@ -217,33 +275,76 @@ nav a {
 }
 
 .concert{
-    margin: 0;
-    border: 1vw yellow solid;
+    margin: 2em 0;
+    border: 0.25em white solid;
     padding: 2.5vh 5%;
     display: flex;
     flex-direction: column;
     /* align-content: center; */
     align-items: center;
     text-align: center;
+    border-radius: 2em;
+    text-shadow: var(--top-color) 0 0 0.35em, var(--under-color) 0 0 0.75em;
+    box-shadow: inset var(--top-color) 0 0 0.5em 0.4em, var(--top-color) 0 0 0.5em 0.5em, inset var(--under-color) 0 0 0.5em 0.4em, var(--under-color) 0 0 0.5em 0.5em;
+    /* filter: drop-shadow(); */
+    /* filter: blur(); */
+    transition: all 1s ease 0s;
+}
+.concert:hover {
+    background-color: white;
+    color: black;
+    /* MAYBE ONLY APPLY TEXT SHADOW GLOWPULSE ANIMATION TO BOLDED TEXT AND REST STAYS AS TRANSITION TO SELECTCOLOR ?? */
+    text-shadow: var(--select-color) 0 0 0.5em, var(--under-color) 0 0 0.5em;
+    /* BOX-SHADOW: in/outset top inc by 0.1em, inset under inc by 0.15em, outset top inc by 0.2em */
+    box-shadow: inset var(--top-color) 0 0 0.6em 0.5em, var(--top-color) 0 0 0.6em 0.6em, inset var(--under-color) 0 0 0.65em 0.55em, var(--under-color) 0 0 0.7em 0.7em;
+    filter: drop-shadow(0 0 0em rgba(255, 255, 255, 0.75));
+    /* filter: drop-shadow(); */
+    /* filter: blur(); */
+    /* animation: glowPulse 1s timing-function 0s infinite normal fill-mode; */
+    animation-name: glowPulse;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    /* animation-delay: -1s; */
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes glowPulse {
+    0% {
+        /* default select glow on hover */
+        filter: drop-shadow(0 0 0em rgba(255, 255, 255, 0.75));
+        text-shadow: var(--select-color) 0 0 0.5em, var(--top-color) 0 0 0.75em;
+        box-shadow: inset var(--top-color) 0 0 0.6em 0.5em, var(--top-color) 0 0 0.6em 0.6em, inset var(--under-color) 0 0 0.65em 0.55em, var(--under-color) 0 0 0.7em 0.7em;
+    }
+    100% {
+        /* max glow */
+        filter: drop-shadow(0 0 0.75em rgba(255, 255, 255, 0.75));
+        text-shadow: var(--select-color) 0 0 0.1em, var(--top-color) 0 0 0.5em;
+        box-shadow: inset var(--top-color) 0 0 0.8em 0.7em, var(--top-color) 0 0 0.8em 0.8em, inset var(--under-color) 0 0 0.85em 0.95em, var(--under-color) 0 0 1em 1em;
+    }
 }
 
 .concertNum {
     margin: 0;
-    padding: 0.5rem 0.25rem 0.25rem 0.25rem;
-    font-size: 1em;
-    font-weight: normal;
+    padding: 1rem 0.25rem 0.25rem 0.25rem;
+    font-family: "Bruno Ace SC";
+    font-size: 1.2em;
+    font-weight: 100;
 }
 .concertName {
     margin: 0;
-    padding: 0.25rem 0.25rem 0.75rem 0.25rem;
-    font-size: 1.5em;
+    /* padding: 0.75rem 0.25rem 0.75rem 0.25rem; */
+    padding: 1rem 0.25rem;
+    font-family: "Goldman";
+    font-size: 2em;
+    font-weight: 900;
+        /* __MOBILE__ font-weight: 500; */
 }
 
 .concertDateTime {
     /* width: 85%; */
     margin: 0;
     padding: 0.75rem 0.25rem;
-    font-size: 1em;
+    font-size: 1.25em;
     /* display: flex;
     justify-content: space-between;
     flex-grow: 1; */
@@ -263,6 +364,19 @@ nav a {
 .concertVenue {
     margin: 0;
     padding: 0.75rem 0.25rem;
+    /* font-family: "Genos"; */
+    /* font-family: "Oxanium"; */
+    /* font-family: "Sankofa Display"; */
+    /* font-family: "Rajdhani"; */
+    /* font-family: "Alumni Sans Pinstripe"; */
+    /* font-family: "Goldman"; */
+    /* font-family: "Bruno Ace SC"; */
+    /* font-family: "Bungee Hairline"; */
+    /* font-family: "Anta"; */
+    /* font-family: "Megrim"; */
+    /* font-family: "Chathura"; */
+    /* font-family: "Jura"; */
+    font-size: 1.25em;
     font-style: italic;
     /* display: grid;
     grid-template-columns: 1fr 1fr;
@@ -300,12 +414,15 @@ nav a {
 .conductor {
     margin: 0;
     padding: 0;
-    font-weight: 100;
+    font-family: "Oxanium";
+    font-size: 1em;
+    font-weight: 300;
 }
 .conductorName {
     margin: 0;
-    padding: 0;
-    font-weight: 700;
+    padding: 0.15em;
+    font-size: 1.25em;
+    font-weight: 900;
 }
 
 .concertRepertoire {
@@ -315,18 +432,22 @@ nav a {
 .repertoire {
     margin: 0;
     padding: 0;
-    font-weight: 100;
+    font-family: "Oxanium";
+    font-size: 1em;
+    font-weight: 300;
 }
 .songsList {
     margin: 0;
-    padding: 0;
+    padding: 0.15em;
+    font-size: 1.2em;
+    font-weight: 100;
     /* font-weight: 500; */
 }
 /* MAYBE GET RID OF "SONG" CLASS FOR INDIVIDUAL SONGS ?? */
 
 .concertDescription {
     margin: 0;
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 1rem;
 }
 .concertDescription p {
     margin: 0;
@@ -349,21 +470,32 @@ p.descriptionNote {
 
 .spanBold {
     font-weight: 700;
+    font-size: 1.1em;
 }
 .spanItalic {
     font-style: italic;
+    font-size: 1.1em;
 }
 
 
 footer {
     margin: 0;
+    border: 0.25em white solid;
     padding: 0;
     text-align: center;
 }
 button {
     margin: 0;
-    /* border */
-    /* padding: 0; */
+    padding: 0;
+}
+button a {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+button a:hover {
+    font-size: 2em;
 }
 
 
@@ -379,18 +511,28 @@ button {
 
 /* TO-DO
     - * Style Concert Main Info
-        - Style concerts' 1 & 3 descriptions
         - Add concerts 4-10
-    - * Fonts
-    - * Background
-    - * Style Footer
-        - alien font
-    - * Neon Glow
-    - * Fix Sticky Nav
-    - * Mobile Media Queries
-    - Pulsate Hover Animation
+        - Fonts
+        - Constrain widths + font-size media queries for web-size (full) & mobile
+    - * Title
+    - * Footer
+    - * Nav
+    - * Remove what's unused (fonts, classes, etc.)
     - Nav Dropdowns Transitions
+    - Gradient Rays Animated Background
+
+hover transitions/animations
+    - concert width, font-size
+        - //
+
 */
+
+/* @keyframes dropDown {
+    0% {
+    }
+    100% {
+    }
+} */
 
 /* 
 <section class="concertsSchedule">
@@ -434,14 +576,6 @@ button {
     </section> 
 */
 
-/* @keyframes dropDown {
-    0% {
-    }
-    100% {
-    }
-} */
-
-/* hover changes child elements' display from 'none' to something else, like block */
 
 /* CONCERTS SCHEDULE */
 /* 
