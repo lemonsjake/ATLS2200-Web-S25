@@ -161,7 +161,6 @@
 
 /* --GENERAL-- */
 * {
-    /* --top-color: rgb(200, 0, 255); */
     --top-color: rgb(0, 195, 255);
     --under-color: rgb(120, 0, 255);
     --select-color: rgb(225, 100, 255);
@@ -169,18 +168,7 @@
 html {
     /* margin: 0;
     padding: 0; */
-    /* background-color: green; */
-    /* background-color: #000; */
-    /* background-image: url(blue-tall-star-bg.jpg); */
-    /* background-image: url(blue-tall-star-bg.jpg);
-    background-position: top center;
-    background-size: contain bottom; */
     background-color: black;
-    /* transform: translateZ(); */
-    /* background:
-  center / contain no-repeat
-    url("/shared-assets/images/examples/firefox-logo.svg"),
-  #eee 35% url("/shared-assets/images/examples/lizard.png"); */
 }
 body {
     margin: 0;
@@ -188,23 +176,27 @@ body {
     /* background-color: black; */
     color: white;
     font-family: 'Jura', 'Oxanium', 'Lucida Sans Unicode', Geneva, system-ui;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 
 /* --PAGE HEADING-- */
 #pg-home {
     margin: 1.5em;
-    border-top: 0.25em white solid;
-    border-radius: 10em;
+    /* border-top: 0.25em white solid; */
+    /* border-radius: 10em;
     padding: 2rem;
-    box-shadow: inset 0em 2em 1em -1em var(--under-color), 0em -1em 1.5em -1em var(--under-color), 0em -1em 1.5em -1.25em var(--under-color);
+    box-shadow: inset 0em 2em 1em -1em var(--under-color), 0em -1em 1.5em -1em var(--under-color), 0em -1em 1.5em -1.25em var(--under-color); */
     text-align: center;
 }
 #pg-title {
     margin: 0;
     padding: 0;
     font-size: 500%;
-    text-shadow: 0 0 0.05em var(--select-color), 0 0 0.1em var(--select-color), 0 0 0.15em var(--under-color), 0 0 0.25em var(--under-color), 0 0 0.5em var(--top-color);
+    text-shadow: var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--under-color) 0 0 0.15em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.5em;
+    animation: titleGlowPulse 1s ease-out 0s infinite alternate;
 }
 #pg-subtitle {
     margin: 0;
@@ -212,10 +204,19 @@ body {
     line-height: 1em;
     font-size: 2em;
     font-weight: 200;
-    text-shadow: 0 0 0.05em var(--select-color), 0 0 0.1em var(--select-color), 0 0 0.15em var(--under-color), 0 0 0.25em var(--under-color), 0 0 0.5em var(--top-color);
+    text-shadow: var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--under-color) 0 0 0.15em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.5em;
     /* filter: drop-shadow(0 0 0.2em var(--under-color));
     text-shadow: 0 0 0.05em var(--select-color), 0 0 0.15em var(--top-color); */
     /* font-weight: 200; */
+}
+@keyframes titleGlowPulse {
+    0% {
+        text-shadow: var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--under-color) 0 0 0.15em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.5em;
+    }
+    100% {
+        filter: saturate(125%), contrast(150%), brightness(125%);
+        text-shadow: white 0 0 0.02em, var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--select-color) 0 0 0.2em, var(--under-color) 0 0 0.25em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.6em;
+    }
 }
 
 
@@ -223,60 +224,92 @@ body {
 /* https://charlesfreeborn.medium.com/how-to-build-a-responsive-nav-using-css-flexbox-3511cd936af9 */
 nav {
   background-color: #000;
-  border: 0.25em white solid;
-  /* padding: .5em; */
+  margin: 0 0.75rem;
+  border: 0.25rem white solid;
+  border-radius: 10em;
   position: sticky;
+  box-shadow: inset var(--top-color) 0 0 0.5em 0.4em, var(--top-color) 0 0 0.5em 0.5em, inset var(--under-color) 0 0 0.5em 0.4em, var(--under-color) 0 0 0.5em 0.5em;
+  /* box-shadow: 0 -1.5em 1.5em 0.25em var(--under-color), 0 -1em 1em 0.25em var(--select-color); */
   /* top: 0px; */
-
 }
-
-/* !! FIX -- content not centered in nav bar */
-
 nav ul {
-    width: 100%;
-    height: auto;
   margin: 0;
-  padding: 0;
+  padding: 0.5em;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   list-style: none;
+  align-items: center;
 }
-
 nav li {
-    /* flex-shrink: 1;
-    flex-grow: 1; */
+    flex-shrink: 1;
   text-align: center;
-  /* font-size-adjust: x-ht; */
-  font-size: 1.25vw;
+  font-weight: 200;
+  font-size: 1.2em;
 }
-
 nav a {
     margin: 0;
-    padding: 1em;
+    padding: 0.5em;
     color: #fff;
     text-align: center;
   text-decoration: none;
-  /* padding: .5em 1em; */
+  /* filter: drop-shadow(0 0 0.1em 0.25em var(--under-color)); */
+  text-shadow: var(--top-color) 0 0 0.15em, var(--top-color) 0 0 0.2em, var(--under-color) 0 0 0.25em, var(--under-color) 0 0 0.5em;
+  transition: all 0.5s linear;
+  z-index: 1;
+}
+nav a:hover {
+    font-weight: 900;
+    text-shadow: var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--under-color) 0 0 0.15em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.5em;
 }
 
-/* li.navDrop {
+/* .navDrop:hover{
+    font-weight: 900;
+    text-shadow: var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--under-color) 0 0 0.15em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.5em;
 } */
-.navDropInfo {
+/* nav a:hover .navDropInfo{
+    display: flex;
+    flex-direction: column;
+    font-weight: 900;
+    text-shadow: var(--select-color) 0 0 0.05em, var(--select-color) 0 0 0.1em, var(--under-color) 0 0 0.15em, var(--under-color) 0 0 0.25em, var(--top-color) 0 0 0.5em;
+} */
+
+/* .navDropInfo {
     display: none;
 }
+.nDrpCncrt {
+    margin: 0;
+    padding: 0;
+}
+.nDrpTitle {
+    margin: 0;
+    padding: 0;
+}
+.nDrpSubtitle {
+    margin: 0;
+    padding: 0;
+}
+.nDrpDtTm {
+    margin: 0;
+    padding: 0;
+}
+.nDrpBld {
+    margin: 0;
+    padding: 0;
+} */
 
 
 .concertsSchedule {
     margin: 0;
-    padding: 10%;
+    padding: 5vh 15% 1vh 15%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .concert{
     margin: 2em 0;
-    border: 0.25em white solid;
+    border: 0.25rem white solid;
     padding: 2.5vh 5%;
     display: flex;
     flex-direction: column;
@@ -288,7 +321,7 @@ nav a {
     box-shadow: inset var(--top-color) 0 0 0.5em 0.4em, var(--top-color) 0 0 0.5em 0.5em, inset var(--under-color) 0 0 0.5em 0.4em, var(--under-color) 0 0 0.5em 0.5em;
     /* filter: drop-shadow(); */
     /* filter: blur(); */
-    transition: all 1s ease 0s;
+    transition: all 1s ease;
 }
 .concert:hover {
     background-color: white;
@@ -479,23 +512,54 @@ p.descriptionNote {
 
 
 footer {
+    height: 10em;
     margin: 0;
-    border: 0.25em white solid;
-    padding: 0;
+    padding: 1em;
     text-align: center;
+    align-content: center;
 }
 button {
     margin: 0;
-    padding: 0;
+    /* height: auto;
+    width: auto; */
+    /* border: 0.25em white solid;
+    border-radius: 8em; */
+    padding: 1em;
+    background-color: #000;
+    /* filter: drop-shadow(white 0 0 1em); */
+    border: 0px black solid;
+    /* border: 0.25em white solid;
+    border-radius: 8em;
+    box-shadow: white 0 0 0.5em 0.25em, white 0 0 1em 0.5em; */
 }
 button a {
     margin: 0;
     padding: 0;
-    font-size: 1.5em;
-    text-decoration: none;
-}
-button a:hover {
+    color: white;
     font-size: 2em;
+    text-decoration: none;
+    transition: all 1s ease-in;
+}
+button:hover {
+    height: 5em;
+    width: auto;
+    font-size: 1em;
+    font-weight: 900;
+    animation: wormhole 1s ease-in-out alternate infinite;
+    box-shadow: white 0 0 0.5em 0.25em, white 0 0 1em 0.5em;
+    border-radius: 50%;
+}
+@keyframes wormhole {
+    0% {
+        box-shadow: white 0 0 0.5em 0.25em, white 0 0 1em 0.5em;
+        border-radius: 50%;
+    }
+    100% {
+        height: 25%;
+        border: 0.25em white solid;
+        border-radius: 50%;
+        box-shadow: white 0 0.5em 0.5em 0.1em, white 0 1em 0.5em 0.25em, white 0 1em 1em 0.25em, white 0em 1em 0.25em 0.25em;
+    }
 }
 
 
