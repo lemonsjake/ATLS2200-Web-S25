@@ -185,6 +185,7 @@ body {
 /* --PAGE HEADING-- */
 #pg-home {
     margin: 1.5em;
+    padding: 0 0 1em 0;
     /* border-top: 0.25em white solid; */
     /* border-radius: 10em;
     padding: 2rem;
@@ -224,17 +225,21 @@ body {
 /* https://charlesfreeborn.medium.com/how-to-build-a-responsive-nav-using-css-flexbox-3511cd936af9 */
 nav {
   background-color: #000;
+  /* backdrop-filter: blur(80px);
+  backdrop-filter: brightness(5%); */
   margin: 0 0.75rem;
   border: 0.25rem white solid;
   border-radius: 10em;
   position: sticky;
+  top: 0.35rem;
+  z-index: 2;
   box-shadow: inset var(--top-color) 0 0 0.5em 0.4em, var(--top-color) 0 0 0.5em 0.5em, inset var(--under-color) 0 0 0.5em 0.4em, var(--under-color) 0 0 0.5em 0.5em;
   /* box-shadow: 0 -1.5em 1.5em 0.25em var(--under-color), 0 -1em 1em 0.25em var(--select-color); */
   /* top: 0px; */
 }
 nav ul {
   margin: 0;
-  padding: 0.5em;
+  padding: 0.75em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -307,7 +312,7 @@ nav a:hover {
     justify-content: center;
 }
 
-.concert{
+.concert {
     margin: 2em 0;
     border: 0.25rem white solid;
     padding: 2.5vh 5%;
@@ -322,6 +327,9 @@ nav a:hover {
     /* filter: drop-shadow(); */
     /* filter: blur(); */
     transition: all 1s ease;
+}
+body.concert:hover nav{
+    display: none;
 }
 .concert:hover {
     background-color: white;
@@ -474,9 +482,7 @@ nav a:hover {
     padding: 0.15em;
     font-size: 1.2em;
     font-weight: 100;
-    /* font-weight: 500; */
 }
-/* MAYBE GET RID OF "SONG" CLASS FOR INDIVIDUAL SONGS ?? */
 
 .concertDescription {
     margin: 0;
@@ -516,7 +522,7 @@ footer {
     margin: 0;
     padding: 1em;
     text-align: center;
-    align-content: center;
+    /* align-items: center; */
 }
 button {
     margin: 0;
@@ -563,32 +569,62 @@ button:hover {
 }
 
 
-/* @media (max-width: ) */
+/* __MOBILE__ */
 @media (max-width: 440px) {
+    html {
+        font-size: 0.75em;
+    }
+    nav {
+        margin: 0em 0.35em;
+        border-radius: 0;
+    }
+    nav a {
+        font-size: 1.5rem;
+    }
+    .symbolNamed {
+        display: none;
+    }
+    .concertsSchedule {
+        padding: 2em 2.5em;
+    }
+    .concert {
+        /* padding: ; */
+        font-weight: 400;
+    }
     .venueInline {
         display: none;
     }
     .venueGeneral, .venueSpecific {
         display: block;
+        font-weight: 500;
+    }
+    .concertDropInfo {
+        font-weight: 500;
+    }
+    .songsList {
+        font-weight: 500;
+    }
+    @keyframes glowPulse {
+        0% {
+            /* default select glow on hover */
+            /* filter: drop-shadow(0 0 0em rgba(255, 255, 255, 0.75)); */
+            text-shadow: var(--select-color) 0 0 0.15em, var(--top-color) 0 0 0.25em;
+            box-shadow: inset var(--top-color) 0 0 0.6em 0.5em, var(--top-color) 0 0 0.6em 0.6em, inset var(--under-color) 0 0 0.65em 0.55em, var(--under-color) 0 0 0.7em 0.7em;
+        }
+        100% {
+            /* max glow */
+            /* filter: drop-shadow(0 0 0.75em rgba(255, 255, 255, 0.75)); */
+            text-shadow: var(--select-color) 0 0 0.05em, var(--top-color) 0 0 0.1em;
+            box-shadow: inset var(--top-color) 0 0 0.8em 0.7em, var(--top-color) 0 0 0.8em 0.8em, inset var(--under-color) 0 0 0.85em 0.95em, var(--under-color) 0 0 1em 1em;
+        }
     }
 }
 
 /* TO-DO
-    - * Style Concert Main Info
-        - Add concerts 4-10
-        - Fonts
+    - * Media Qs
         - Constrain widths + font-size media queries for web-size (full) & mobile
-    - * Title
-    - * Footer
-    - * Nav
-    - * Remove what's unused (fonts, classes, etc.)
-    - Nav Dropdowns Transitions
-    - Gradient Rays Animated Background
-
-hover transitions/animations
-    - concert width, font-size
-        - //
-
+    - * Remove what's unused (fonts, classes, comments, etc.)
+    - * Rename file as index
 */
 
 /* @keyframes dropDown {

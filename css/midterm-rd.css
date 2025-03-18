@@ -1,0 +1,150 @@
+* {
+    background: black;
+    font-family: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+/* flex child = DIRECT child, not inherited by subchild */
+body {
+    color: white;
+    /* background-image: linear-gradient(90deg, black, white, black); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    text-shadow: 0em 0em 0.6em rgb(200, 40, 255), 0em 0em 0.2em rgb(0, 125, 255);
+}
+
+
+#pg-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    box-sizing: border-box;
+    box-shadow: 0em 0em 0.5em 0.5em rgb(200, 40, 255), inset 0em 0em 0.5em 0.5em rgb(200, 40, 255), 0em 0em 0.75em 0.75em rgb(75, 0, 255), inset 0 0 0.75em 0.75em rgb(75, 0, 255);
+    margin: 2vmax;
+    padding: 1.5em;
+    border: solid white 0.5em;
+    border-radius: 2em;
+    text-shadow: 0em 0em 0.75em rgb(200, 40, 255), 0em 0em 0.5em rgb(75, 0, 255), 0em 0em 0.25em rgb(0, 125, 255);
+}
+#pg-title {
+    box-sizing: border-box;
+    margin: 0em 0em 0.05em 0em;
+    padding: 0;
+    font-size: 2.5em;
+    font-weight: 900;
+    line-height: 1.25em;
+}
+#pg-sub-title {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25em;
+}
+
+#concert-schedule {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+.concert {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    box-shadow: 0em 0em 0.5em 0.5em rgb(200, 40, 255), inset 0em 0em 0.5em 0.5em rgb(200, 40, 255);
+    margin: 2.5vmax 2.5vmax 5vmax 2.5vmax;
+    padding: 1em 1.25em;
+    border: solid white 0.5em;
+    border-radius: 2em;
+    /* backdrop-filter: blur(5em); */
+}
+
+.concertNum {
+    margin: 1em 0em 1rem 0em;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+.concertName {
+    margin: 0 0.25em;
+    padding: 0 0.25em;
+    font-size: 1.75rem;
+}
+
+.concertDateTime {
+    margin: 0.5em 0.25em;
+    padding: 0.5em 0.5em;
+}
+
+.concertConductor {
+    margin: 0.5em 0.25em;
+    padding: 0.5em 0.5em;
+}
+
+.concertSongs {
+    margin: 0.5em 0.25em;
+    padding: 0.5em 0.5em;
+}
+
+.concertLocation {
+    margin: 0.5em 0.25em;
+    padding: 0.5em 0.5em;
+}
+
+.concertDescriptionContainer {
+    box-sizing: border-box;
+}
+.concertDescription {
+    margin: 0em 0em 1em 0em;
+    padding: 1.25em 1.25em;
+    box-sizing: border-box;
+    /* backdrop-filter: blur(5em); */
+}
+
+.spanBold {
+    font-weight: 900;
+}
+.spanItalic {
+   font-style: italic;
+}
+
+/* .laptopScreen {
+} */
+/* laptop screen widths > 430px */
+/* @media (min-width: 431px) {
+    #laptopScreen {
+        //
+    }
+} */
+
+.mobileScreen {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+/* mobile screen widths <= 430px */
+@media (max-width: 430px) {
+    .mobileScreen {
+        margin: auto;
+    }
+}
+
+
+/* ADD 3RD COLOR (MAYBE A PURPLE), AND/OR FURTHER IMPLEMENT THE BLUE */
+/* ADD STARRY BACKGROUND */
+/* ADD WEIGHT/GLOW PULSE ANIMATION TO TITLE, CONCERT NAMES, DATE/TIME, AND PREPPTY MUCH EVERYTHING THAT'S BOLDED */
