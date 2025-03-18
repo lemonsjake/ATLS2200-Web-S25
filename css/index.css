@@ -398,7 +398,7 @@ footer {
   height: 50%;
   font-weight: 900;
   animation: wormhole-anim 1s ease-in alternate infinite;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 @keyframes wormhole-anim {
   0% {
@@ -409,7 +409,7 @@ footer {
     margin: 0 10em 1em 10em;
     height: 0%;
     border: 0px black solid;
-    border-radius: 50%;
+    border-radius: 100%;
     padding: 2.5em 0 0 0;
     box-shadow: inset white 0 0.5em 0.75em 0.1em, white 0 1em 0.5em 0.25em,
       white 0 1em 1em 0.25em, white 0em 1em 0.25em 0.25em;
@@ -493,7 +493,7 @@ footer {
       margin: 0 5em 1em 5em;
       height: 0%;
       border: 0px black solid;
-      border-radius: 50%;
+      border-radius: 100%;
       padding: 2em 0 0 0;
       box-shadow: inset white 0 0.5em 0.75em 0.1em, white 0 1em 0.5em 0.25em,
         white 0 1em 1em 0.25em, white 0em 1em 0.25em 0.25em;
