@@ -1,0 +1,13 @@
+body {
+    background-color: white;
+    padding: 0;
+}
+.div-box {
+    background-color: black;
+    color: cyan;
+    border: 5% cyan solid;
+    color: rgb(24, 224, 24);
+    padding: 1%;
+    text-align: center;
+    left: 0px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+        .number {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <p class="title">Gimme yo phone number please...</p>
+    <p class="number">0000000000</p>
+    <div class="prevNext">
+        <button id="prev"><</button>
+        <button id="next">></button>
+    </div>
+    <div class="resetSubmit">
+        <button id="reset">reset</button>
+        <button id="submit">submit</button>
+    </div>
+    <script>
+        let prevBtn = document.querySelector('#prev');
+        let nextBtn = document.querySelector('#next');
+        let resetBtn = document.querySelector('#reset');
+        let submitBtn = document.querySelector('#submit');
+
+        let number = document.querySelector('.number');
+        number.textContent = Math.floor(Math.random() * ((1000000000-0) + 1)) + 1;
+
+        submitBtn.addEventListener('click', submitNumber);
+        resetBtn.addEventListener('click', resetNumber);
+        nextBtn.addEventListener('click', nextNumber);
+        prevBtn.addEventListener('click', prevNumber);
+
+        function submitNumber() {
+            alert('Your number is '+ number.textContent);
+        }
+
+        function resetNumber() {
+            number.textContent = Math.floor(Math.random() * ((1000000000-0) + 1)) + 1;
+        }
+
+        function prevNumber() {
+            let num = Number(number.textContent);
+            number.textContent = num - 1;
+        }
+
+        function nextNumber() {
+            let num = Number(number.textContent);
+            number.textContent = num + 1;
+        }
+    </script>
+</body>
+</html>
