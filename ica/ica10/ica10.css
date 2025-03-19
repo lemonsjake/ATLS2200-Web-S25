@@ -24,7 +24,7 @@ body {
 
 #elmTwo {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 25%;
+    margin: 1vh;
     padding: 2em;
     border-radius: 5em;
     box-shadow: inset gray 0 0 0.5em 0.25em;
