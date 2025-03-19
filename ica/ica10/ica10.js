@@ -1,5 +1,6 @@
 let btnOne = document.querySelector("#findOut");
 let btnTwo = document.querySelector("#elmTwo");
+let bg = document.querySelector("html");
 
 btnOne.addEventListener("click", nowSad);
 btnTwo.addEventListener("click", evenSadder);
@@ -16,7 +17,9 @@ function nowSad() {
 
 function evenSadder() {
   console.log("test2");
-  btnTwo.style = "padding: 3em; font-weight: 100;";
+  btnTwo.textContent = ":(";
+  btnTwo.style = "padding: 3em;";
+  bg.style = "background-color: black;"
 }
 
 // let frame = document.querySelector('.bgFrame');
