@@ -7,9 +7,10 @@
     <title>wa10.html</title>
 
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fjalla+One&display=swap');
+      
       body {
-        font-family: helvetica, sans-serif;
-        width: 350px;
+        width: 380px;
       }
 
       label {
@@ -19,6 +20,13 @@
       div {
         padding-bottom: 20px;
       }
+      
+      .name-prompt {
+        font-family: "Fjalla One", sans-serif;
+      }
+      .units-prompt {
+        font-family: cursive, system-ui;
+      }
 
       input[type="text"] {
         padding: 5px;
@@ -26,8 +34,9 @@
       }
 
       p {
-        background: #ffc125;
-        color: #5e2612;
+        font-family: "Bangers", system-ui;
+        background: #EC1D24;
+        color: white;
         padding: 10px;
         visibility: hidden;
       }
@@ -35,11 +44,11 @@
   </head>
 
   <body>
-    <div>
-      <label for="customname">Enter custom name:</label>
+    <div class="name-prompt">
+      <label for="customname">ENTER CUSTOM NAME:</label>
       <input id="customname" type="text" placeholder="" />
     </div>
-    <div>
+    <div class="units-prompt">
       <label for="us">US</label
       ><input id="us" type="radio" name="ukus" value="us" checked />
       <label for="uk">UK</label
