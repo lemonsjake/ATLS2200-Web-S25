@@ -20,7 +20,12 @@ iconStyles = [
   "bottts",
   "bottts-neutral",
   "croodles",
-let iconEndPt = "https://api.dicebear.com/9.x/<styleName>/svg"
+];
+let iconEndPt = `https://api.dicebear.com/9.x/${randomStyle}/svg`;
+
+function randomStyle() {
+  return `iconStyles[Math.floor(Math.random() * iconStyles.length)]`;
+}
 // get endPt;
 
 let current = {
