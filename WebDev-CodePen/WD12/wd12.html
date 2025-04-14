@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Dev 12</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap");
+
+      :root {
+        --bg-color: #f1f1f1;
+        --card-width: 300px;
+        --card-height: 400px;
+        --black: #080808;
+        --white: #fafafa;
+        --accent: #ff2d55;
+        --grid-color: rgba(0, 0, 0, 0.08);
+        --frame-color: rgba(8, 8, 8, 0.8);
+        --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        --transition-fast: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: var(--bg-color);
+        padding: 5vw;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-feature-settings: "salt" 1, "ss01" 1, "ss02" 1;
+        color: var(--black);
+      }
+
+      .card-system {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6vw;
+        justify-content: center;
+        max-width: 1200px;
+      }
+
+      .deconstructed-card {
+        position: relative;
+        width: var(--card-width);
+        height: var(--card-height);
+        cursor: pointer;
+      }
+
+      .card-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform var(--transition-slow),
+          opacity var(--transition-slow);
+      }
+
+      .card-image {
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .wave-svg {
+        width: 100%;
+        height: 100%;
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .card-frame {
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .frame-path {
+        fill: none;
+        stroke: var(--frame-color);
+        stroke-width: 1;
+        stroke-dasharray: 1520;
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .card-background {
+        z-index: 0;
+        background-color: var(--white);
+      }
+
+      .bg-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .grid-line {
+        position: absolute;
+        background-color: var(--grid-color);
+        transition: transform var(--transition-slow),
+          opacity var(--transition-fast);
+      }
+
+      .grid-line.horizontal {
+        width: 100%;
+        height: 1px;
+        transform: scaleX(0.3);
+        transform-origin: left;
+      }
+
+      .grid-line.vertical {
+        height: 100%;
+        width: 1px;
+        transform: scaleY(0.3);
+        transform-origin: top;
+      }
+
+      .bg-objects {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .bg-object {
+        position: absolute;
+        opacity: 0.3;
+        transition: transform var(--transition-slow),
+          opacity var(--transition-slow);
+      }
+
+      .bg-object.circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        bottom: 40px;
+        left: -30px;
+        transform: translateY(20px);
+      }
+
+      .bg-object.square {
+        width: 60px;
+        height: 60px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        top: 40px;
+        right: 30px;
+        transform: rotate(45deg) translateY(-20px);
+      }
+
+      .bg-object.triangle {
+        width: 0;
+        height: 0;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 70px solid rgba(0, 0, 0, 0.05);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+
+      .card-content {
+        z-index: 2;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .ocean-content {
+        color: var(--white);
+      }
+
+      .ocean-content .content-text,
+      .ocean-content .meta-text,
+      .ocean-content .cta-text {
+        color: var(--white);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .ocean-content .meta-line {
+        background-color: var(--white);
+      }
+
+      .ocean-content .fragment-body {
+        background: rgba(15, 30, 44, 0.5);
+        padding: 10px;
+        border-radius: 4px;
+        backdrop-filter: blur(2px);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .content-fragment {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fragment-heading {
+        margin-top: auto;
+      }
+
+      .content-text {
+        font-size: 2rem;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--black);
+        transition: transform var(--transition-fast),
+          opacity var(--transition-fast);
+        transform: translateY(0);
+        opacity: 0.7;
+      }
+
+      .content-subtext {
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-top: 0.5rem;
+        color: var(--black);
+        opacity: 0.5;
+        transform: translateY(0);
+        transition: transform var(--transition-fast),
+          opacity var(--transition-fast);
+      }
+
+      .fragment-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 2rem;
+      }
+
+      .meta-line {
+        width: 40px;
+        height: 1px;
+        background-color: var(--black);
+        transform: scaleX(0.5);
+        transform-origin: left;
+        transition: transform var(--transition-fast);
+      }
+
+      .meta-text {
+        font-family: "Space Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        opacity: 0.6;
+        transform: translateX(0);
+        transition: transform var(--transition-fast),
+          opacity var(--transition-fast);
+      }
+
+      .fragment-body {
+        max-width: 85%;
+        margin: 1.5rem 0;
+      }
+
+      .fragment-body .content-text {
+        font-size: 0.9rem;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: normal;
+        opacity: 0.6;
+      }
+
+      .fragment-cta {
+        margin-top: auto;
+        overflow: visible;
+      }
+
+      .cta-link {
+        text-decoration: none;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 0;
+      }
+
+      .cta-box {
+        position: absolute;
+        top: 0;
+        left: -10px;
+        width: calc(100% + 20px);
+        height: 100%;
+        background-color: var(--black);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--transition-fast);
+      }
+
+      .ocean-content .cta-box {
+        background-color: var(--white);
+      }
+
+      .cta-text {
+        position: relative;
+        font-family: "Space Mono", monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--black);
+        transition: color var(--transition-fast);
+        transform: translateX(0);
+        opacity: 0.7;
+        transition: transform var(--transition-fast),
+          opacity var(--transition-fast), color var(--transition-fast);
+      }
+
+      .ocean-content .cta-text {
+        color: var(--white);
+      }
+
+      .ocean-content .cta-link:hover .cta-text {
+        color: var(--black) !important;
+      }
+
+      .align-right {
+        text-align: right;
+      }
+
+      .text-align-right {
+        align-self: flex-end;
+        text-align: right;
+      }
+
+      .text-align-right .meta-line {
+        transform-origin: right;
+      }
+
+      .text-align-right .cta-box {
+        transform-origin: right;
+      }
+
+      .text-align-right .meta-text {
+        transform: translateX(0);
+      }
+
+      .text-card .content-text,
+      .text-card .content-subtext {
+        color: var(--black);
+      }
+
+      .deconstructed-card:hover .frame-path {
+        stroke-dashoffset: 0;
+      }
+
+      .deconstructed-card:hover .content-text,
+      .deconstructed-card:hover .content-subtext {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.05s;
+      }
+
+      .deconstructed-card:hover .fragment-body .content-text {
+        transition-delay: 0.1s;
+        opacity: 1;
+      }
+
+      .deconstructed-card:hover .meta-text {
+        transform: translateX(0);
+        opacity: 1;
+        transition-delay: 0.15s;
+      }
+
+      .deconstructed-card:hover .meta-line {
+        transform: scaleX(1);
+        transition-delay: 0.05s;
+      }
+
+      .deconstructed-card:hover .wave-svg {
+        transform: scale(1.05);
+      }
+
+      .deconstructed-card:hover .cta-text {
+        transform: translateX(0);
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+
+      .deconstructed-card:hover .cta-link:hover .cta-box {
+        transform: scaleX(1);
+      }
+
+      .deconstructed-card:hover .cta-link:hover .cta-text {
+        color: var(--white);
+      }
+
+      .text-card:hover .grid-line.horizontal {
+        transform: scaleX(1);
+      }
+
+      .text-card:hover .grid-line.vertical {
+        transform: scaleY(1);
+      }
+
+      .text-card:hover .bg-object {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0);
+      }
+
+      .text-card:hover .bg-object.square {
+        transform: rotate(45deg) translate(0, 0);
+      }
+
+      .text-card:hover .bg-object.triangle {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .deconstructed-card:hover .grid-line:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+
+      .deconstructed-card:hover .grid-line:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+
+      .deconstructed-card:hover .grid-line:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+
+      .deconstructed-card:hover .grid-line:nth-child(4) {
+        transition-delay: 0.15s;
+      }
+
+      .deconstructed-card:hover .grid-line:nth-child(5) {
+        transition-delay: 0.25s;
+      }
+
+      .deconstructed-card {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transform-style: preserve-3d;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --card-width: 280px;
+          --card-height: 380px;
+        }
+
+        .card-content {
+          padding: 20px;
+        }
+
+        .content-text {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-system">
+      <article class="deconstructed-card">
+        <div class="card-layer card-image">
+          <svg
+            class="wave-svg"
+            viewBox="0 0 300 400"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient
+                id="oceanGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#0F1E2C" />
+                <stop offset="100%" stop-color="#162D41" />
+              </linearGradient>
+              <linearGradient
+                id="waveGradient1"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stop-color="#1E3B58" />
+                <stop offset="50%" stop-color="#2B5683" />
+                <stop offset="100%" stop-color="#1E3B58" />
+              </linearGradient>
+              <linearGradient
+                id="waveGradient2"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stop-color="#2B5683" />
+                <stop offset="50%" stop-color="#3A6EA5" />
+                <stop offset="100%" stop-color="#2B5683" />
+              </linearGradient>
+              <linearGradient
+                id="waveGradient3"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stop-color="#3A6EA5" />
+                <stop offset="50%" stop-color="#4E8BC7" />
+                <stop offset="100%" stop-color="#3A6EA5" />
+              </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#oceanGradient)" />
+            <path
+              d="M0,230 C30,220 60,240 90,230 C120,220 150,240 180,230 C210,220 240,240 270,230 C290,225 295,230 300,225 L300,400 L0,400 Z"
+              fill="url(#waveGradient1)"
+              opacity="0.8"
+            />
+            <path
+              d="M0,260 C40,250 80,270 120,260 C160,250 200,270 240,260 C280,250 290,260 300,255 L300,400 L0,400 Z"
+              fill="url(#waveGradient2)"
+              opacity="0.9"
+            />
+            <path
+              d="M0,290 C50,280 100,300 150,290 C200,280 250,300 300,290 L300,400 L0,400 Z"
+              fill="url(#waveGradient3)"
+              opacity="0.9"
+            />
+            <path
+              d="M0,320 C60,315 120,330 180,320 C240,310 280,330 300,320 L300,400 L0,400 Z"
+              fill="#4E8BC7"
+              opacity="0.7"
+            />
+          </svg>
+        </div>
+        <div class="card-layer card-frame">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="none">
+            <path class="frame-path" d="M 20,20 H 280 V 380 H 20 Z" />
+          </svg>
+        </div>
+        <div class="card-layer card-content ocean-content">
+          <div class="content-fragment fragment-heading">
+            <h2 class="content-text">OCEANIC</h2>
+          </div>
+          <div class="content-fragment fragment-meta">
+            <div class="meta-line"></div>
+            <span class="meta-text">04.13.25</span>
+          </div>
+          <div class="content-fragment fragment-body">
+            <p class="content-text">
+              The boundary between chaos and order exists in the rhythmic
+              patterns of ocean currents, a visual metaphor for the digital age.
+            </p>
+          </div>
+          <div class="content-fragment fragment-cta">
+            <a href="https://lemonsjake.github.io/ATLS2200-Web-S25/WebDev-CodePen/WD12/wd12.html" class="cta-link">
+              <div class="cta-box"></div>
+              <span class="cta-text">VIEW</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="deconstructed-card text-card">
+        <div class="card-layer card-background">
+          <div class="bg-grid">
+            <div class="grid-line horizontal" style="top: 25%"></div>
+            <div class="grid-line horizontal" style="top: 50%"></div>
+            <div class="grid-line horizontal" style="top: 75%"></div>
+            <div class="grid-line vertical" style="left: 33.33%"></div>
+            <div class="grid-line vertical" style="left: 66.66%"></div>
+          </div>
+          <div class="bg-objects">
+            <div class="bg-object circle"></div>
+            <div class="bg-object square"></div>
+            <div class="bg-object triangle"></div>
+          </div>
+        </div>
+        <div class="card-layer card-frame">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="none">
+            <path class="frame-path" d="M 20,20 H 280 V 380 H 20 Z" />
+          </svg>
+        </div>
+        <div class="card-layer card-content">
+          <div class="content-fragment fragment-meta text-align-right">
+            <span class="meta-text">CONSTRUCT</span>
+            <div class="meta-line"></div>
+          </div>
+          <div class="content-fragment fragment-heading">
+            <h2 class="content-text align-right">SYSTEM</h2>
+            <h3 class="content-subtext align-right">ORDER FROM CHAOS</h3>
+          </div>
+          <div class="content-fragment fragment-body text-align-right">
+            <p class="content-text">
+              Typography forms the foundation of structured communication,
+              creating meaning through deliberate arrangement.
+            </p>
+          </div>
+          <div class="content-fragment fragment-cta text-align-right">
+            <a href="http://lemonsjake.github.io/ATLS2200-Web-S25/webDev-CodePen/WD12/wd12.html" class="cta-link">
+              <div class="cta-box"></div>
+              <span class="cta-text">READ</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".deconstructed-card");
+
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+
+            const xDeg = (y - 0.5) * 8;
+            const yDeg = (x - 0.5) * -8;
+
+            card.style.transform = `perspective(1200px) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
+
+            const layers = card.querySelectorAll(".card-layer");
+
+            layers.forEach((layer, index) => {
+              const depth = 30 * (index + 1);
+              const translateZ = depth;
+              const offsetX = (x - 0.5) * 10 * (index + 1);
+              const offsetY = (y - 0.5) * 10 * (index + 1);
+
+              layer.style.transform = `translate3d(${offsetX}px, ${offsetY}px, ${translateZ}px)`;
+            });
+
+            const waveSvg = card.querySelector(".wave-svg");
+            if (waveSvg) {
+              const moveX = (x - 0.5) * -20;
+              const moveY = (y - 0.5) * -20;
+              waveSvg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+
+              const wavePaths = waveSvg.querySelectorAll(
+                "path:not(:first-child)"
+              );
+              wavePaths.forEach((path, index) => {
+                const factor = 1 + index * 0.5;
+                const waveX = moveX * factor * 0.5;
+                const waveY = moveY * factor * 0.3;
+                path.style.transform = `translate(${waveX}px, ${waveY}px)`;
+              });
+            }
+
+            const bgObjects = card.querySelectorAll(".bg-object");
+            bgObjects.forEach((obj, index) => {
+              const factorX = (index + 1) * 10;
+              const factorY = (index + 1) * 8;
+              const moveX = (x - 0.5) * factorX;
+              const moveY = (y - 0.5) * factorY;
+
+              if (obj.classList.contains("square")) {
+                obj.style.transform = `rotate(45deg) translate(${moveX}px, ${moveY}px)`;
+              } else if (obj.classList.contains("triangle")) {
+                obj.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px)) scale(1)`;
+              } else {
+                obj.style.transform = `translate(${moveX}px, ${moveY}px)`;
+              }
+            });
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "";
+
+            const layers = card.querySelectorAll(".card-layer");
+            layers.forEach((layer) => {
+              layer.style.transform = "";
+            });
+
+            const waveSvg = card.querySelector(".wave-svg");
+            if (waveSvg) {
+              waveSvg.style.transform = "";
+
+              const wavePaths = waveSvg.querySelectorAll(
+                "path:not(:first-child)"
+              );
+              wavePaths.forEach((path) => {
+                path.style.transform = "";
+              });
+            }
+
+            const bgObjects = card.querySelectorAll(".bg-object");
+            bgObjects.forEach((obj) => {
+              if (obj.classList.contains("square")) {
+                obj.style.transform = "rotate(45deg) translateY(-20px)";
+              } else if (obj.classList.contains("triangle")) {
+                obj.style.transform = "translate(-50%, -50%) scale(0.5)";
+              } else {
+                obj.style.transform = "translateY(20px)";
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
