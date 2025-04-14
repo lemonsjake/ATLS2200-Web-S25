@@ -1,19 +1,14 @@
-// newQuoteBtn = document.querySelector('#new-quote');
 let newQuoteBtn = document
   .querySelector("#js-new-quote")
   .addEventListener("click", getQuote);
-let chgIconBtn = document.querySelector("#js-change-icon").addEventListener("click", randomStyle);
-let saveIconBtn = document.querySelector("#js-save-icon");
+let chgIconBtn = document
+  .querySelector("#js-change-icon")
+  .addEventListener("click", getIcon);
+let saveIconBtn = document
+  .querySelector("#js-save-icon")
+  .addEventListener("click", saveIcon);
 
-let iconImg = document.querySelector("#js-icon-img");
-// const answerText = document.querySelector("#js-answer-text");
-
-// let endPt = "https://trivia.cyberwisp.com/getrandomchristmasquote";
-let quoteEndPt =
-  "https://api.codetabs.com/v1/proxy/?quest=stoic.tekloon.net/stoic-quote";
-// let quoteEndPt = "https://zenquotes.io?api=random";
-
-let iconStyles = [
+const iconStyles = [
   "adventurer",
   "adventurer-neutral",
   "avataaars",
@@ -23,14 +18,33 @@ let iconStyles = [
   "big-smile",
   "bottts",
   "bottts-neutral",
-  "croodles"
+  "croodles",
+  "croodles-neutral",
+  "dylan",
+  "fun-emoji",
+  "lorelei",
+  "lorelei-neutral",
+  "micah",
+  "miniavs",
+  "notionists",
+  "notionists-neutral",
+  "open-peeps",
+  "personas",
+  "pixel-art",
+  "thumbs",
 ];
 
-// let randomStyleType = randomStyle();
-let iconEndPt = `https://api.dicebear.com/9.x/${randomStyle}/svg`;
+let currIconStyle = "";
+let currIconSeed = "";
+let currIconURL = "";
 
-function randomStyle() {
-  return iconStyles[Math.floor(Math.random() * iconStyles.length)];
+let quoteEndPt =
+  "https://api.codetabs.com/v1/proxy/?quest=stoic.tekloon.net/stoic-quote";
+
+// console.log(iconEndPt);
+
+function randomStyle(arr) {
+  return `${arr[Math.floor(Math.random() * arr.length)]}`;
 }
 
 // let current = {
@@ -41,8 +55,6 @@ function randomStyle() {
 async function getQuote() {
   console.log("getQuote called");
 
-  // answerText.textContent = "";
-
   try {
     const response = await fetch(quoteEndPt);
 
@@ -51,14 +63,10 @@ async function getQuote() {
     }
 
     const json = await response.json();
-    // console.log(json);
 
-    // current.quote = json.quote;
-    // current.answer = json.answer;
-
-    let quoteItem = json.data.quote;
+    const quoteItem = json.data.quote;
     console.log(quoteItem);
-    let quoteAuthor = json.data.author;
+    const quoteAuthor = json.data.author;
     console.log(quoteAuthor);
 
     // let fullQuote = `${quoteItem} ${quoteAuthor}`;
@@ -69,9 +77,12 @@ async function getQuote() {
     //   quoteItem = quoteItem.substring(0, quoteItem.length - 2);
     // }
 
+    currIconSeed = `${quoteItem.charAt(0)}${quoteItem.charAt(
+      quoteItem.length - 2
+    )}${quoteAuthor.charAt(0)}${quoteAuthor.charAt(quoteAuthor.length - 1)}`;
+
     displayQuote(quoteItem, quoteAuthor);
-    displayIcon();
-    // displayQuote(current);
+    getIcon();
   } catch (err) {
     console.log(err);
     alert("FAIL QUOTE");
@@ -81,7 +92,9 @@ async function getQuote() {
 async function getIcon() {
   console.log("getIcon called");
 
-  // answerText.textContent = "";
+  currIconStyle = randomStyle(iconStyles);
+  let iconEndPt = `https://api.dicebear.com/9.x/${currIconStyle}/svg?seed=${currIconSeed}`;
+  // console.log(seed);
 
   try {
     const response = await fetch(iconEndPt);
@@ -90,29 +103,9 @@ async function getIcon() {
       throw Error(response.statusText);
     }
 
-    const json = await response.json();
-    // console.log(json);
+    const iconBlob = await response.blob();
 
-    iconImg.setAttribute("src", iconEndPt);
-
-    // current.quote = json.quote;
-    // current.answer = json.answer;
-
-    // let quoteItem = json.data.quote;
-    // console.log(quoteItem);
-    // let quoteAuthor = json.data.author;
-    // console.log(quoteAuthor);
-
-    // let fullQuote = `${quoteItem} ${quoteAuthor}`;
-    // console.log(fullQuote);
-
-    // if (quoteItem.charAt(quoteItem.length - 1) === "@") {
-    //     console.log("Present @ character found. Removing now.");
-    //   quoteItem = quoteItem.substring(0, quoteItem.length - 2);
-    // }
-
-    displayIcon();
-    // displayQuote(quoteItem, quoteAuthor);
+    displayIcon(URL.createObjectURL(iconBlob));
   } catch (err) {
     console.log(err);
     alert("FAIL ICON");
@@ -121,7 +114,9 @@ async function getIcon() {
 
 function displayQuote(quote, author) {
   console.log("displayQuote called");
+
   const quoteText = document.querySelector("#js-quote-text");
+
   if (quote.charAt(quote.length - 1) === "@") {
     console.log("Present @ character found.");
     quoteText.textContent = `${quote + author}`;
@@ -132,14 +127,27 @@ function displayQuote(quote, author) {
   } else {
     quoteText.textContent = `${quote} ~${author}`;
   }
-  //   answerBtn.addEventListener("click", () => {
-  //     answerText.textContent = curr.answer;
-  //   });
 }
 
-function displayIcon() {
+function displayIcon(iconURL) {
   console.log("displayIcon called");
+
+  const iconImg = document.querySelector("#icon-pic");
+
+  iconImg.setAttribute("src", iconURL);
+}
+
+function saveIcon(iconBlobURL) {
+  const downloadLink = document.createElement("a");
+  downloadLink.setAttribute("href", iconBlobURL);
+  downloadLink.setAttribute(
+    "download",
+    `stoic-icon_style-${currIconStyle}_seed-${currIconSeed}.svg`
+  );
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
 }
 
 getQuote();
-getIcon();
+// getIcon();
