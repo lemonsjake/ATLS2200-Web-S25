@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICA 13</title>
+  </head>
+  <body>
+    <script>
+      const car = {
+        make: "Ford",
+        model: "Escape",
+      }; // {} means a DICTIONARY
+
+      const car1 = {
+        make: "Mazda",
+        model: "Cx-5",
+      }; // {} means a DICTIONARY
+
+      const carList = ["Ford", "Mazda", "Honda"];
+      console.log(carList[1]);
+      console.log(car["make"]);
+
+      // ONE WAY TO MAKE A CLASS, W/ A FUNCTION
+      /* function cars(make, model) {
+             this.make = make;
+             this.model = modell;
+        }
+
+        const aNewCar = cars("Toyota", "Rav4");
+
+        console.log(aNewCar.make); */
+
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+
+        getArea() {
+          return this.height * this.width;
+        }
+      }
+
+      const rect1 = new Rectangle(100, 220);
+      console.log(rect1.height, rect1.width); // 100 220
+      console.log(rect1.getArea()); // 22000
+
+      const rect2 = new Rectangle(100, 300);
+      console.log(rect2.height, rect1.width); // 100 300
+      console.log(rect2.getArea()); // 30000
+    </script>
+  </body>
+</html>

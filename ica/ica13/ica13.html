@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>In Class Assignment 13 - Bouncing balls</title>
+    <!-- <link rel="stylesheet" href="ica13.css" /> -->
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+
+      html {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        height: 100%;
+      }
+
+      body {
+        overflow: hidden;
+        height: inherit;
+      }
+
+      h1 {
+        font-size: 2rem;
+        letter-spacing: -1px;
+        position: absolute;
+        margin: 0;
+        top: -4px;
+        right: 5px;
+
+        color: transparent;
+        text-shadow: 0 0 4px white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Bouncing Balls</h1>
+    <canvas></canvas>
+
+    <!-- <script src="ica13.js"></script> -->
+    <script>
+      // setup canvas
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const width = (canvas.width = window.innerWidth);
+      const height = (canvas.height = window.innerHeight);
+
+      // function to generate random number
+      function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // function to generate random color
+      function randomRGB() {
+        return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+      }
+
+      // MY CODE
+      class Ball {
+        constructor(x, y, velX, velY, color, size) {
+          this.x = x;
+          this.y = y;
+          this.velX = velX;
+          this.velY = velY;
+          this.color = color;
+          this.size = size;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.fillStyle = this.color;
+          ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+
+        update() {
+          if (this.x + this.y >= width) {
+            this.velX = -this.velX;
+          }
+
+          if (this.x - this.size <= 0) {
+            this.velX = -this.velX;
+          }
+
+          if (this.y + this.size >= height) {
+            this.velY = -this.velY;
+          }
+
+          if (this.y - this.size <= 0) {
+            this.velY = -this.velY;
+          }
+
+          this.x += this.velX;
+          this.y += this.velY;
+        }
+
+        collisionDetect() {
+          // BOUNCE ON COLLISION
+          for (const ball of balls) {
+            if (this != ball) {
+              // Collision
+              const dx = this.x - ball.x; // same as color collision
+              const dy = this.y - ball.y; // same as color collision
+              const distance = Math.sqrt(dx * dx + dy * dy); // same as color collision
+
+              if (distance < this.size + ball.size) {
+                // same as color collision
+                // Reverse velocity
+                this.velX = -this.velX;
+                this.velY = -this.velY;
+                ball.velX = -ball.velX;
+                ball.velY = -ball.velY;
+
+                // ALSO change color on collision bounce
+                this.color = randomRGB();
+                ball.color = randomRGB();
+              }
+              //
+            }
+          }
+
+          // for (const ball of balls) {
+          //     if (this != ball) {
+          //     const dx = this.x - ball.x;
+          //     const dy = this.y - ball.y;
+          //     const distance = Math.sqrt(dx * dx + dy * dy);
+          //     if (distance < this.size + ball.size) {
+          //         this.velX = -this.velX;
+          //         this.velY = -this.velY;
+          //         ball.velX = -ball.velX;
+          //         ball.velY = -ball.velY;
+          //     }
+          //     }
+          // }
+
+          /* // CHANGE COLOR ON COLLISION
+          for (const ball of balls) {
+            if (this != ball) {
+              const dx = this.x - ball.x;
+              const dy = this.y - ball.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              if (distance < this.size + ball.size) {
+                ball.color = this.color = randomRGB();
+              }
+            }
+          } */
+        }
+      }
+
+      //   MAKE BALLS BOUNCE OFF EACHOTHER FOR 1% EXTRA CREDIT TO OVERALL CLASS GRADE
+
+      // const ball1 = new Ball(100, 100, 1, 1, "rgb(255,0,0)", 10);
+      // const ball2 = new Ball(200, 300, 1, 1, "rgb(0,255,0)", 10);
+      // const ball3 = new Ball(400, 600, 1, 1, "rgb(0,0,255)", 10);
+      // ball1.draw();
+
+      const balls = [];
+
+      while (balls.length < 5) {
+        const size = random(10, 40);
+        const ball = new Ball(
+          random(0 + size, width - size),
+          random(0 + size, height - size),
+          random(-5, 5),
+          random(-5, 5),
+          randomRGB(),
+          size
+        );
+
+        balls.push(ball);
+      }
+
+      function loop() {
+        ctx.fillStyle = "rgba(0, 0, 0, 25%)";
+        ctx.fillRect(0, 0, width, height);
+
+        for (const ball of balls) {
+          ball.draw();
+          ball.update();
+          ball.collisionDetect();
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    </script>
+  </body>
+</html>
