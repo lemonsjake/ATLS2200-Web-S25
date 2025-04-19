@@ -90,7 +90,7 @@ for (employee of company.employees) {
 
 
 // PROBLEM 6
-console.log("\n--PROBLEM 6 -- Work from home (wfh) employees");
+console.log("\n--PROBLEM 6: Work from home (wfh) employees");
 for (employee of company.employees) {
   employee.firstName === "Anna" || employee.firstName === "Sam" ? employee.wfh = true : employee.wfh = false;
   // if ((employee.firstName === "Anna") || (employee.firstName === "Sam")) {
