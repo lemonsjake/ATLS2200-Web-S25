@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/phone-num-final.css">
+    <title>Web JS Final - Frustrating Phone Number - Card Matching</title>
+</head>
+<body>
+    <h1>Phone #: <span>___-___-____</span></h1>
+    <div>
+        <p class="phoneNum" id="dig-1">_</p>
+        <p class="phoneNum" id="dig-2">_</p>
+        <p class="phoneNum" id="dig-3">_</p>
+        <p class="phoneNum">-</p>
+        <p class="phoneNum" id="dig-4">_</p>
+        <p class="phoneNum" id="dig-5">_</p>
+        <p class="phoneNum" id="dig-6">_</p>
+        <p class="phoneNum">-</p>
+        <p class="phoneNum" id="dig-7">_</p>
+        <p class="phoneNum" id="dig-8">_</p>
+        <p class="phoneNum" id="dig-9">_</p>
+        <p class="phoneNum" id="dig-10">_</p>
+    </div>
+
+    <p>Flip a card to see what number it represents.</p>
+    <p>Flip a card to see what number it represents.</p>
+    <p>//</p>
+    <p>NOTE: Only one card can be flipped at a time until its match is found.</p>
+
+    <div class="card-container">
+        <p class="card order-0">zero</p>
+        <p class="card order-1">one</p>
+        <p class="card order-2">two</p>
+        <p class="card order-3">three</p>
+        <p class="card order-4">four</p>
+        <p class="card order-5">five</p>
+        <p class="card order-6">six</p>
+        <p class="card order-7">seven</p>
+        <p class="card order-8">eight</p>
+        <p class="card order-9">nine</p>
+
+        <p class="card order-10">zero</p>
+        <p class="card order-11">one</p>
+        <p class="card order-12">two</p>
+        <p class="card order-13">three</p>
+        <p class="card order-14">four</p>
+        <p class="card order-15">five</p>
+        <p class="card order-16">six</p>
+        <p class="card order-17">seven</p>
+        <p class="card order-18">eight</p>
+        <p class="card order-19">nine</p>
+    </div>
+
+    <!-- <script src="phone-num-final.js"></script> -->
+     <script>
+        class Card {
+            constructor(card) {
+                this.card = card;
+                this.isFlipped = false;
+                this.isMatched = false;
+            }
+
+            flip() {
+                this.isFlipped = !(this.isFlipped); // switches card's flip attribute\
+                // this.card.classList.toggle('flipped'); // toggles flipped class
+            }
+            
+            //
+            match() {
+                this.isMatched = true;
+                this.card.classList.add('matched');
+            }
+        }
+     </script>
+</body>
+</html>
+
+<!-- card matching for frustrating phone number js project -->
+<!-- //
+     0 1 2 3 4 5 6 7 8 9
+     0 1 2 3 4 5 6 7 8 9
+
+     0 1 2 3 4
+     5 6 7 8 9
+     0 1 2 3 4
+     5 6 7 8 9
+     
+     0 1 2 3
+     4 5 6 7
+     8 9 0 1
+     2 3 4 5
+     6 7 8 9
+
+     funtions:
+        
+-->

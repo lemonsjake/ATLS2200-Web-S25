@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= , initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        background: #ccc;
+      }
+      .flip {
+        -webkit-perspective: 800;
+        width: 400px;
+        height: 200px;
+        position: relative;
+        margin: 50px auto;
+      }
+      .flip .card.flipped {
+        -webkit-transform: rotatex(-180deg);
+      }
+      .flip .card {
+        width: 100%;
+        height: 100%;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transition: 0.5s;
+      }
+      .flip .card .face {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        z-index: 2;
+        font-family: Georgia;
+        font-size: 3em;
+        text-align: center;
+        line-height: 200px;
+      }
+      .flip .card .front {
+        position: absolute;
+        z-index: 1;
+        background: black;
+        color: white;
+        cursor: pointer;
+      }
+      .flip .card .back {
+        -webkit-transform: rotatex(-180deg);
+        background: blue;
+        background: white;
+        color: black;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="js-flip-1" class="flip">
+      <div class="card">
+        <div class="face front">Front</div>
+        <div class="face back">Back</div>
+      </div>
+    </div>
+
+    <div id="js-flip-2" class="flip">
+      <div class="card">
+        <div class="face front">Front</div>
+        <div class="face back">Back</div>
+      </div>
+    </div>
+
+    <div id="js-flip-3" class="flip">
+      <div class="card">
+        <div class="face front">Front</div>
+        <div class="face back">Back</div>
+      </div>
+    </div>
+    <script>
+      let card = document.querySelector(".card");
+      let flip1 = document.querySelector("js-flip-1");
+      let flip2 = document.querySelector("js-flip-2");
+      let flip3 = document.querySelector("js-flip-3");
+
+      flip1.addEventListener("click", function () {
+        this.classList.toggle("flipped");
+      });
+      flip2.addEventListener("click", function () {
+        this.classList.toggle("flipped");
+      });
+      flip3.addEventListener("click", function () {
+        this.classList.toggle("flipped");
+      });
+    </script>
+  </body>
+</html>

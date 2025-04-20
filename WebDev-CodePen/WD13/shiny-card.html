@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shiny Fact Card</title>
+
+    <style>
+      :root {
+        /* Color Definition */
+        --card-background-color: #eee;
+        --card-border-color: #999;
+        --card-specular-color: #fff;
+        --text-color: #000;
+        --link-color: #04d;
+        --link-visited-color: #53d;
+        --link-focus-color: #09f;
+        --link-hover-color: #4af;
+        --link-active-color: #04d;
+      }
+
+      /* Adjust for Dark Themes */
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --card-background-color: #333;
+          --card-border-color: #222;
+          --card-specular-color: #444;
+          --text-color: #fff;
+          --link-color: #47f;
+          --link-visited-color: #67f;
+          --link-focus-color: #09f;
+          --link-hover-color: #6bf;
+          --link-active-color: #47f;
+        }
+
+        body {
+          /* Just a simple cheat for dark mode. >:> */
+          backdrop-filter: brightness(50%);
+        }
+      }
+
+      /* Card CSS */
+      /* Nothing much... */
+
+      html {
+        color: var(--text-color);
+        font-size: 16px;
+      }
+
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          #358 0 70px,
+          #469 70px 100px
+        );
+        font-family: "Poppins", sans-serif;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+        max-width: 1000px;
+      }
+
+      .grid-parent {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        max-width: 100vw;
+        margin: 0 auto;
+        /* justify-items: center; */
+        /* align-items: center; */
+        text-align: center;
+      }
+
+      /* #card-6 {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+      } */
+
+      .card {
+        /* display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center; */
+        transform: translateY(0);
+
+        /* transform: rotateY(180deg); */
+
+        /* width: 280px; */
+        padding: 1rem;
+        background-color: var(--card-background-color);
+        background-image: linear-gradient(
+          75deg,
+          #fff0 0% 25%,
+          var(--card-specular-color) 25% 50%,
+          #fff0 50% 100%
+        );
+        background-position-x: 0px;
+        border: 2px solid var(--card-border-color);
+        border-radius: 50px;
+        box-shadow: 2px 4px #0007;
+        transition: transform 0.3s, box-shadow 0.3s,
+          background-position-x 0.25s 0.1s;
+        font-style: italic;
+        /* line-height: 1.3em; */
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        background-position-x: 420px;
+        box-shadow: 1px 6px 0 2px #0007;
+      }
+
+      .card-header {
+        margin: 0 0 8px;
+      }
+
+      .card-fact {
+        font-size: 1.1rem;
+        margin: 4px 0;
+      }
+
+      /* The "Read More" Link */
+
+      .read-more {
+        color: var(--link-color);
+        transition: color 0.2s;
+      }
+      .read-more:visited {
+        color: var(--link-visited-color);
+      }
+      .read-more:focus {
+        color: var(--link-focus-color);
+        outline: none;
+      }
+      .read-more:hover {
+        color: var(--link-hover-color);
+      }
+      .read-more:active {
+        color: var(--link-active-color);
+      }
+
+      /* Adjust for Reduced Motion */
+
+      @media (prefers-reduced-motion: reduce) {
+        .card,
+        .card * {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="container">
+      <div class="card">
+        <h1 class="card-header">Did you know:</h1>
+        <h2 class="card-fact">There are 21 reserved keywords in Lua 5.1?</h2>
+        <p>
+          These keywords are used for defining variables and functions, managing
+          control flow, etc. They cannot be used as a variable or function name.
+          This means that you can't use "local local" or "function function".
+        </p>
+        <a class="read-more" href="#">Click here to read more!</a>
+      </div>
+    </div> -->
+    <div class="grid-parent">
+      <div class="card" id="card-0">
+        <h1 class="card-header">zero</h1>
+      </div>
+      <div class="card" id="card-1">
+        <h1 class="card-header">one</h1>
+      </div>
+      <div class="card" id="card-2">
+        <h1 class="card-header">two</h1>
+      </div>
+      <div class="card" id="card-3">
+        <h1 class="card-header">three</h1>
+      </div>
+      <div class="card" id="card-4">
+        <h1 class="card-header">four</h1>
+      </div>
+      <div class="card" id="card-5">
+        <h1 class="card-header">five</h1>
+      </div>
+      <div class="card" id="card-6">
+        <h1 class="card-header">six</h1>
+      </div>
+      <div class="card" id="card-7">
+        <h1 class="card-header">seven</h1>
+      </div>
+      <div class="card" id="card-8">
+        <h1 class="card-header">eight</h1>
+      </div>
+      <div class="card" id="card-9">
+        <h1 class="card-header">nine</h1>
+      </div>
+      <div class="card" id="card-10">
+        <h1 class="card-header">zero</h1>
+      </div>
+      <div class="card" id="card-11">
+        <h1 class="card-header">one</h1>
+      </div>
+      <div class="card" id="card-12">
+        <h1 class="card-header">two</h1>
+      </div>
+      <div class="card" id="card-13">
+        <h1 class="card-header">three</h1>
+      </div>
+      <div class="card" id="card-14">
+        <h1 class="card-header">four</h1>
+      </div>
+      <div class="card" id="card-15">
+        <h1 class="card-header">five</h1>
+      </div>
+      <div class="card" id="card-16">
+        <h1 class="card-header">six</h1>
+      </div>
+      <div class="card" id="card-17">
+        <h1 class="card-header">seven</h1>
+      </div>
+      <div class="card" id="card-18">
+        <h1 class="card-header">eight</h1>
+      </div>
+      <div class="card" id="card-19">
+        <h1 class="card-header">nine</h1>
+      </div>
+    </div>
+  </body>
+</html>
