@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/phone-num-final.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/phone-num-final.css" />
     <title>Web JS Final - Frustrating Phone Number - Card Matching</title>
-</head>
-<body>
-    <h1>Phone #: <span>___-___-____</span></h1>
+  </head>
+  <body>
+    <h1>Phone #: <span>___-___-___</span></h1>
     <div>
-        <p class="phoneNum" id="dig-1">_</p>
+      <p id="phone-num">___-___-____</p>
+      <!-- <p class="phoneNum" id="dig-1">_</p>
         <p class="phoneNum" id="dig-2">_</p>
         <p class="phoneNum" id="dig-3">_</p>
         <p class="phoneNum">-</p>
@@ -20,60 +21,155 @@
         <p class="phoneNum" id="dig-7">_</p>
         <p class="phoneNum" id="dig-8">_</p>
         <p class="phoneNum" id="dig-9">_</p>
-        <p class="phoneNum" id="dig-10">_</p>
+        <p class="phoneNum" id="dig-10">_</p> -->
+    </div>
+
+    <div class="resetSubmit">
+      <button id="reset">reset</button>
+      <button id="submit">submit</button>
     </div>
 
     <p>Flip a card to see what number it represents.</p>
     <p>Flip a card to see what number it represents.</p>
     <p>//</p>
-    <p>NOTE: Only one card can be flipped at a time until its match is found.</p>
+    <p>
+      NOTE: Only one card can be flipped at a time until its match is found.
+    </p>
 
     <div class="card-container">
-        <p class="card order-0">zero</p>
-        <p class="card order-1">one</p>
-        <p class="card order-2">two</p>
-        <p class="card order-3">three</p>
-        <p class="card order-4">four</p>
-        <p class="card order-5">five</p>
-        <p class="card order-6">six</p>
-        <p class="card order-7">seven</p>
-        <p class="card order-8">eight</p>
-        <p class="card order-9">nine</p>
+        container
+      <!-- <p class="card order-0">zero</p>
+      <p class="card order-1">one</p>
+      <p class="card order-2">two</p>
+      <p class="card order-3">three</p>
+      <p class="card order-4">four</p>
+      <p class="card order-5">five</p>
+      <p class="card order-6">six</p>
+      <p class="card order-7">seven</p>
+      <p class="card order-8">eight</p>
+      <p class="card order-9">nine</p>
 
-        <p class="card order-10">zero</p>
-        <p class="card order-11">one</p>
-        <p class="card order-12">two</p>
-        <p class="card order-13">three</p>
-        <p class="card order-14">four</p>
-        <p class="card order-15">five</p>
-        <p class="card order-16">six</p>
-        <p class="card order-17">seven</p>
-        <p class="card order-18">eight</p>
-        <p class="card order-19">nine</p>
+      <p class="card order-10">zero</p>
+      <p class="card order-11">one</p>
+      <p class="card order-12">two</p>
+      <p class="card order-13">three</p>
+      <p class="card order-14">four</p>
+      <p class="card order-15">five</p>
+      <p class="card order-16">six</p>
+      <p class="card order-17">seven</p>
+      <p class="card order-18">eight</p>
+      <p class="card order-19">nine</p> -->
     </div>
 
     <!-- <script src="phone-num-final.js"></script> -->
-     <script>
-        class Card {
-            constructor(card) {
-                this.card = card;
-                this.isFlipped = false;
-                this.isMatched = false;
-            }
+    <script>
+      let resetBtn = document
+        .querySelector("#reset")
+        .addEventListener("click", resetNumber);
+      let submitBtn = document
+        .querySelector("#submit")
+        .addEventListener("click", submitNumber);
+      let phoneNum = document.querySelector("#phone-num");
+      let counter = 0;
+      const cardContainer = document.querySelector(".card-container");
+      const cardFaces = [
+        "zero",
+        "zero",
+        "one",
+        "one",
+        "two",
+        "two",
+        "three",
+        "three",
+        "four",
+        "four",
+        "five",
+        "five",
+        "six",
+        "six",
+        "seven",
+        "seven",
+        "eight",
+        "eight",
+        "nine",
+        "nine",
+      ];
+      const cardVals = [
+        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
+      ];
 
-            flip() {
-                this.isFlipped = !(this.isFlipped); // switches card's flip attribute\
-                // this.card.classList.toggle('flipped'); // toggles flipped class
-            }
-            
-            //
-            match() {
-                this.isMatched = true;
-                this.card.classList.add('matched');
-            }
+      let cards = [];
+
+      class Card {
+        constructor(card, face, value) {
+          this.card = card;
+          this.face = face.textContent; // card value (0-9)
+          this.value = value.textContent; // card face (zero-nine)
+          this.isFlipped = false;
+          this.isMatched = false;
+          this.card.addEventListener("click", () => {
+            this.flip();
+            // this.checkMatch();
+          });
         }
-     </script>
-</body>
+
+        flip() {
+          this.isFlipped = !this.isFlipped; // switches card's flip attribute\
+          // this.card.classList.toggle('flipped'); // toggles flipped class
+          console.log("flipped", this.face, this.value); // logs card value and face
+        }
+
+        //
+        match() {
+          this.isMatched = true;
+          this.card.classList.add("matched");
+        }
+      }
+
+      /* Suffles cards using Fisher-Yates Shuffle algorithm */
+      function shuffle(nums) {
+        for (let i = nums.length; i > 0; i--) {
+          let rand = Math.floor(Math.random() * (nums.length + 1));
+          let temp = nums[i];
+          nums[i] = nums[rand];
+          nums[rand] = temp;
+        }
+
+        return nums;
+      }
+
+      function createCards() {
+        let shuffledFaces = shuffle(cardFaces);
+        let shuffledVals = shuffle(cardVals);
+
+        for (let i = 0; i < shuffledFaces.length; i++) {
+          const newCard = document.createElement("div");
+          const cardFace = document.createElement("p");
+          const cardVal = document.createElement("p");
+          cardFace.textContent = shuffledFaces[i];
+          cardFace.classList.add("card-face");
+          cardVal.textContent = shuffledVals[i];
+          cardVal.classList.add("card-back");
+          newCard.classList.add("card");
+          newCard.appendChild(cardFace);
+          newCard.appendChild(cardVal);
+          cards.push(new Card(newCard, cardFace, cardVal));
+          cardContainer.appendChild(newCard);
+        }
+      }
+
+      function resetNumber() {
+        phoneNum.textContent = "___-___-____";
+      }
+
+      function submitNumber() {
+        alert("Your number is " + number.textContent);
+      }
+
+
+      createCards(); // create cards
+    </script>
+  </body>
 </html>
 
 <!-- card matching for frustrating phone number js project -->
