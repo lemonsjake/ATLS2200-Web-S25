@@ -37,7 +37,6 @@
     </p>
 
     <div class="card-container">
-        container
       <!-- <p class="card order-0">zero</p>
       <p class="card order-1">one</p>
       <p class="card order-2">two</p>
@@ -70,7 +69,7 @@
         .querySelector("#submit")
         .addEventListener("click", submitNumber);
       let phoneNum = document.querySelector("#phone-num");
-      let counter = 0;
+      let fails = 0;
       const cardContainer = document.querySelector(".card-container");
       const cardFaces = [
         "zero",
@@ -92,19 +91,22 @@
         "eight",
         "eight",
         "nine",
-        "nine"
+        "nine",
       ];
       const cardVals = [
-        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9
+        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
       ];
 
       let cards = [];
+      let flippedCards = [];
+      let matchedCards = [];
 
       class Card {
-        constructor(card, face, value) {
+        constructor(card, face, value, idx) {
           this.card = card;
-          this.face = face.textContent; // card value (0-9)
-          this.value = value.textContent; // card face (zero-nine)
+          this.face = face.textContent; // card face (zero-nine)
+          this.value = value.textContent; // card value (0-9)
+          this.idx = idx;
           this.isFlipped = false;
           this.isMatched = false;
           this.card.addEventListener("click", () => {
@@ -113,20 +115,80 @@
           });
         }
 
+        getValue() {
+          return this.value;
+        }
+
         flip() {
-          this.isFlipped = !this.isFlipped; // switches card's flip attribute\
-          this.card.classList.toggle('flipped'); // toggles flipped class
+          if (this.isFlipped) {
+            this.isFlipped = false;
+            this.card.classList.remove("flipped");
+          } else {
+            this.isFlipped = true; // switches card's flip attribute\
+            this.card.classList.toggle("flipped"); // toggles flipped class
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+              console.log(
+                "2 flipped cards",
+                flippedCards[0].getValue(),
+                flippedCards[1].getValue()
+              );
+              // this.checkMatch(flippedCards[0], flippedCards[1]);
+              checkMatch();
+            } else {
+              console.log("error adding flipped card");
+            }
+          }
+          // this.isFlipped = true; // switches card's flip attribute\
+          // this.card.classList.toggle("flipped"); // toggles flipped class
           console.log("flipped", this.face, this.value); // logs card value and face
         }
 
-        //
+        addFlippedCard() {
+          if (flippedCards.length < 2) {
+            flippedCards.push(this);
+            console.log("added", this);
+          } else if (flippedCards.length === 2) {
+            console.log(
+              "2 flipped cards",
+              flippedCards[0].getValue(),
+              flippedCards[1].getValue()
+            );
+            // this.checkMatch(flippedCards[0], flippedCards[1]);
+            checkMatch();
+          } else {
+            console.log("error adding flipped card");
+          }
+          // console.log("flipped cards", flippedCards.length, flippedCards);
+        }
+
+        // checkMatch() {
+        //   console.log("checking match", flippedCards[0].value, flippedCards[1].value);
+        //   // if (flippedCards.length === 2) {
+        //     if (flippedCards[0].value === flippedCards[1].value) {
+        //       flippedCards[0].match();
+        //       flippedCards[1].match();
+        //       matchedCards.push(flippedCards[0], flippedCards[1]);
+        //     } else {
+        //       fails++;
+        //       setTimeout(() => {
+        //         console.log("not a match", flippedCards[0].value, flippedCards[1].value);
+        //         flippedCards[0].flip();
+        //         flippedCards[1].flip();
+        //       }, 1000); // 1s delay before flipping cards back over
+        //     }
+        //     flippedCards = [];
+        //   // }
+        // }
+
         match() {
           this.isMatched = true;
           this.card.classList.add("matched");
         }
       }
 
-      /* Suffles cards using Fisher-Yates Shuffle algorithm */
+      /* Shuffles cards using Fisher-Yates Shuffle algorithm */
       function shuffle(nums) {
         // Iterates backwards through nums, swapping last elem with an elem at a rand lower index
         for (let i = nums.length - 1; i > 0; i--) {
@@ -141,15 +203,16 @@
 
       function createCards() {
         let shuffledFaces = shuffle(cardFaces);
-        console.log(cardFaces.length);
-        console.log(shuffledFaces.length);
+        // console.log(cardFaces.length);
+        // console.log(shuffledFaces.length);
         let shuffledVals = shuffle(cardVals);
-        console.log(shuffledVals.length);
+        // console.log(shuffledVals.length);
 
         for (let i = 0; i < cardFaces.length; i++) {
           const newCard = document.createElement("div");
           const cardFace = document.createElement("p");
           const cardVal = document.createElement("p");
+          const idx = i;
           cardFace.textContent = shuffledFaces[i];
           cardFace.classList.add("card-face");
           cardVal.textContent = shuffledVals[i];
@@ -157,7 +220,7 @@
           newCard.classList.add("card");
           newCard.appendChild(cardFace);
           newCard.appendChild(cardVal);
-          cards.push(new Card(newCard, cardFace, cardVal));
+          cards.push(new Card(newCard, cardFace, cardVal, idx));
           cardContainer.appendChild(newCard);
         }
       }
@@ -170,6 +233,38 @@
         alert("Your number is " + number.textContent);
       }
 
+      function checkMatch() {
+        console.log(
+          "checking match",
+          flippedCards[0].getValue(),
+          flippedCards[1].getValue()
+        );
+        // if (flippedCards.length === 2) {
+        if (flippedCards[0].getValue() === flippedCards[1].getValue()) {
+          console.log("matching");
+          flippedCards[0].match();
+          flippedCards[1].match();
+          matchedCards.push(flippedCards[0], flippedCards[1]);
+        } else {
+          fails++;
+          console.log("fails", fails);
+          setTimeout(() => {
+            // console.log("not a match", flippedCards[0].getValue(), flippedCards[1].getValue());
+            flippedCards[0].flip();
+            flippedCards[1].flip();
+          }, 1000); // 1s delay before flipping cards back over
+        }
+        flippedCards = [];
+        // }
+      }
+
+      // function addFlippedCard(card) {
+      //   flippedCards.push(card);
+      //   if (flippedCards.length === 2) {
+      //     // console.log("2 flipped cards", flippedCards[0].value, flippedCards[1].value);
+      //     checkMatch(flippedCards[0], flippedCards[1]);
+      //   }
+      // }
 
       createCards(); // create cards
     </script>
