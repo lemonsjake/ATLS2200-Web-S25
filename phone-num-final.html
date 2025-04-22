@@ -92,10 +92,10 @@
         "eight",
         "eight",
         "nine",
-        "nine",
+        "nine"
       ];
       const cardVals = [
-        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
+        0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9
       ];
 
       let cards = [];
@@ -115,7 +115,7 @@
 
         flip() {
           this.isFlipped = !this.isFlipped; // switches card's flip attribute\
-          // this.card.classList.toggle('flipped'); // toggles flipped class
+          this.card.classList.toggle('flipped'); // toggles flipped class
           console.log("flipped", this.face, this.value); // logs card value and face
         }
 
@@ -128,8 +128,9 @@
 
       /* Suffles cards using Fisher-Yates Shuffle algorithm */
       function shuffle(nums) {
-        for (let i = nums.length; i > 0; i--) {
-          let rand = Math.floor(Math.random() * (nums.length + 1));
+        // Iterates backwards through nums, swapping last elem with an elem at a rand lower index
+        for (let i = nums.length - 1; i > 0; i--) {
+          let rand = Math.floor(Math.random() * (i + 1));
           let temp = nums[i];
           nums[i] = nums[rand];
           nums[rand] = temp;
@@ -140,9 +141,12 @@
 
       function createCards() {
         let shuffledFaces = shuffle(cardFaces);
+        console.log(cardFaces.length);
+        console.log(shuffledFaces.length);
         let shuffledVals = shuffle(cardVals);
+        console.log(shuffledVals.length);
 
-        for (let i = 0; i < shuffledFaces.length; i++) {
+        for (let i = 0; i < cardFaces.length; i++) {
           const newCard = document.createElement("div");
           const cardFace = document.createElement("p");
           const cardVal = document.createElement("p");
