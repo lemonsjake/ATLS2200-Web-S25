@@ -1,3 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+html {
+  font-family: "Urbanist", sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.phoneNumContainer {
+  padding: 0.25em 0.1em 0em 0.1em;
+}
+#phone-num-title {
+  font-size: 2.25em;
+  font-weight: 600;
+  line-height: 0.5em;
+}
+#phone-num {
+  font-size: 2.5em;
+  font-weight: 700;
+  line-height: 0.25em;
+}
+
+.difficulty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.75em 0.5em 2em 0.5em;
+  font-size: 1em;
+  font-weight: normal;
+}
+#diff-container-title {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0.5em;
+}
+.diffMode {
+  margin: 0.25em;
+  padding: 0 0.5em;
+  border: #333 solid 0.1em;
+  border-radius: 1em;
+}
+.diffMode .modeInfo {
+  display: none;
+  font-size: 0.8em;
+}
+.diffMode:hover {
+  background-color: #333;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.modeTitle {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin: 0.5em;
+}
+.diffMode.active .modeTitle {
+  font-weight: 800;
+}
+.diffMode:hover .modeInfo {
+  display: block;
+  /* position: relative; */
+}
+
 .card-container {
   width: 100%;
   height: 100%;
@@ -13,11 +80,11 @@
   width: 5em;
   height: 5em;
   perspective: 1000px;
-  border: 0.15em black solid;
+  border: 0.15em #333 solid;
   /* border-radius: 5em; */
   margin: 0.8em;
   /* -webkit-backface-visibility: hidden;
-    backface-visibility: hidden; */
+  backface-visibility: hidden; */
   transition: transform ease-in-out 0.5s;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -28,7 +95,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* border: 2px black solid; */
   width: 100%;
   height: 60%;
   /* translate:-50%; */
@@ -38,11 +104,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-
   /* cursor: pointer; */
 }
 .card-back {
-  /* position: absolute; */
   transform: rotateY(180deg);
 }
 
@@ -52,6 +116,19 @@
 }
 
 .card.matched {
-  /* color: red; */
+  /* color: violet; */
   border: 0.15em solid violet;
+  font-weight: 800;
+}
+/* @media (max-width: 674px) {
+  .card {
+    width: 5.5em;
+    height: 5.5em;
+  } */
+@media (max-width: 454px) {
+  .card {
+    width: 4em;
+    height: 4em;
+    margin: 0.5em;
+  }
 }

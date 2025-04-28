@@ -7,35 +7,83 @@
     <title>Web JS Final - Frustrating Phone Number - Card Matching</title>
   </head>
   <body>
-    <h1>Phone #: <span id="phone-num">___-___-____</span></h1>
-    <!-- <div>
-      <p id="phone-num">___-___-____</p>
-    </div> -->
+    <div class="phoneNumContainer">
+      <h1 id="phone-num-title">Phone #</h1>
+      <h2 id="phone-num">___-___-____</h2>
+    </div>
 
     <div class="resetSubmit">
       <button id="reset">reset</button>
       <button id="submit">submit</button>
     </div>
 
-    <p>Click a card to flip it and see what number it represents.</p>
-    <p>After flipping 2 cards, they will flip back over unless their backs match.</p>
-    <p>If the cards match, they stay flipped and can be used to add that digit to your phone number.</p>
-    <p>If they don't match, your match attempts counter increases by 1.</p>
-    <p>The experience automatically resets after your match attempts counter reaches the value based on your chosen difficulty.</p>
-    <p>Be careful when using matches in your phone number -- you'll need to restart since there's no backspace!</p>
-    <p>Good luck!</p>
+    <div class="difficulty">
+      <h3 id="diff-container-title">Difficulty</h3>
+      <div id="easy-mode" class="diffMode">
+        <p class="modeTitle">annoying</p>
+        <p class="modeInfo">
+          <em><strong>16</strong> match<br />attempts</em>
+        </p>
+      </div>
+      <div id="med-mode" class="diffMode">
+        <p class="modeTitle">frustrating</p>
+        <p class="modeInfo">
+          <em><strong>12</strong> match<br />attempts</em>
+        </p>
+      </div>
+      <div id="hard-mode" class="diffMode">
+        <p class="modeTitle">ummm...</p>
+        <p class="modeInfo">
+          <em><strong>8</strong> match<br />attempts</em>
+        </p>
+      </div>
+    </div>
+
+    <!--
+      hover over mode:
+        mode.bg = white
+        mode.modeTitle = bold
+      .modeInfo {
+        display: none;
+      }
+    -->
+
+    <div class="instructions">
+      <p>Click a card to flip it and see what number it represents.</p>
+      <p>
+        After flipping 2 cards, they will flip back over unless their backs
+        match.
+      </p>
+      <p>
+        If the cards match, they stay flipped and can be used to add that digit
+        to your phone number.
+      </p>
+      <p>If they don't match, your match attempts counter increases by 1.</p>
+      <p>
+        The experience automatically resets after your match attempts counter
+        reaches the value based on your chosen difficulty.
+      </p>
+      <p>
+        Be careful when using matches in your phone number -- you'll need to
+        restart since there's no backspace!
+      </p>
+      <p>Good luck!</p>
+    </div>
 
     <div class="card-container"></div>
 
     <!-- <script src="phone-num-final.js"></script> -->
     <script>
-      let resetBtn = document
-        .querySelector("#reset")
-        .addEventListener("click", resetAll);
-      let submitBtn = document
-        .querySelector("#submit")
-        .addEventListener("click", submitNumber);
-      let phoneNum = document.querySelector("#phone-num");
+      // let restart = false;
+      let failLimit = 12; // Default med/frustrating difficulty
+
+      let pauseTime = false; // Prevents flipping cards while waiting for timeout
+      let fails = 0;
+      let numFlips = 0;
+      let phoneDigNum = 0;
+      let cards = [];
+      let flippedIdxs = [];
+      let matchedCards = [];
       const cardContainer = document.querySelector(".card-container");
       const cardFaces = [
         "zero",
@@ -63,14 +111,30 @@
         0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
       ];
 
-      // let restart = false;
-      let pauseTime = false; // prevents flipping cards while waiting for timeout
-      let fails = 0;
-      let numFlips = 0;
-      let phoneDigNum = 0;
-      let cards = [];
-      let flippedIdxs = [];
-      let matchedCards = [];
+      let resetBtn = document
+        .querySelector("#reset")
+        .addEventListener("click", resetAll);
+      let submitBtn = document
+        .querySelector("#submit")
+        .addEventListener("click", submitNumber);
+      let phoneNum = document.querySelector("#phone-num");
+      document.querySelector("#easy-mode").addEventListener("click", () => {
+        failLimit = 16; //failLim for easy/annoying difficulty
+        updateActiveMode("easy-mode");
+        console.log("Difficulty set to 'annoying'. Fail limit:", failLimit);
+      });
+
+      document.querySelector("#med-mode").addEventListener("click", () => {
+        failLimit = 12; // failLim for med/frustrating difficulty
+        updateActiveMode("med-mode");
+        console.log("Difficulty set to 'frustrating'. Fail limit:", failLimit);
+      });
+
+      document.querySelector("#hard-mode").addEventListener("click", () => {
+        failLimit = 8; // failLim for hard/ummm difficulty
+        updateActiveMode("hard-mode");
+        console.log("Difficulty set to 'ummm...'. Fail limit:", failLimit);
+      });
 
       class Card {
         constructor(card, face, value, idx) {
@@ -160,6 +224,17 @@
         }
       }
 
+      function updateActiveMode(activeModeId) {
+        const modes = document.querySelectorAll(".diffMode");
+        modes.forEach((mode) => {
+          if (mode.id === activeModeId) {
+            mode.classList.add("active");
+          } else {
+            mode.classList.remove("active");
+          }
+        });
+      }
+
       /* Shuffles cards using Fisher-Yates Shuffle algorithm */
       function shuffle(nums) {
         // Iterates backwards through nums, swapping last elem with an elem at a rand lower index
@@ -204,11 +279,20 @@
         cards = []; // reset array of card objects
         cardContainer.innerHTML = ""; // remove card HTML elements
         createCards();
+        updateActiveMode("med-mode")
       }
 
       function submitNumber() {
-        console.log("submitting num", phoneNum.textContent);
-        alert("Your number is " + number.textContent);
+        if (phoneNum.textContent === "___-___-____") {
+          alert("No phone number entered!");
+        } else if (phoneNum.textContent.includes("_")) {
+          alert("Incomplete phone number!");
+        } else {
+          console.log("submitting num", phoneNum.textContent);
+          alert("Your number is " + phoneNumber.textContent);
+        }
+
+        return;
       }
 
       function checkMatch(idx1, idx2) {
@@ -228,11 +312,16 @@
             numFlips = 0; // reset num cards currently flipped
             flippedIdxs = []; // empty stored flipped card indices
             pauseTime = false;
+            if (fails >= failLimit) {
+              alert("Match attempt limit reached!");
+              resetAll();
+            }
           }, 1000); // 1s delay before flipping cards back over
         }
       }
 
       createCards(); // create cards
+      updateActiveMode("med-mode") // set default active difficulty mode
     </script>
   </body>
 </html>
