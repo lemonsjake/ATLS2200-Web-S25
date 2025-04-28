@@ -7,69 +7,35 @@
     <title>Web JS Final - Frustrating Phone Number - Card Matching</title>
   </head>
   <body>
-    <h1>Phone #: <span>___-___-___</span></h1>
-    <div>
+    <h1>Phone #: <span id="phone-num">___-___-____</span></h1>
+    <!-- <div>
       <p id="phone-num">___-___-____</p>
-      <!-- <p class="phoneNum" id="dig-1">_</p>
-        <p class="phoneNum" id="dig-2">_</p>
-        <p class="phoneNum" id="dig-3">_</p>
-        <p class="phoneNum">-</p>
-        <p class="phoneNum" id="dig-4">_</p>
-        <p class="phoneNum" id="dig-5">_</p>
-        <p class="phoneNum" id="dig-6">_</p>
-        <p class="phoneNum">-</p>
-        <p class="phoneNum" id="dig-7">_</p>
-        <p class="phoneNum" id="dig-8">_</p>
-        <p class="phoneNum" id="dig-9">_</p>
-        <p class="phoneNum" id="dig-10">_</p> -->
-    </div>
+    </div> -->
 
     <div class="resetSubmit">
       <button id="reset">reset</button>
       <button id="submit">submit</button>
     </div>
 
-    <p>Flip a card to see what number it represents.</p>
-    <p>Flip a card to see what number it represents.</p>
-    <p>//</p>
-    <p>
-      NOTE: Only one card can be flipped at a time until its match is found.
-    </p>
+    <p>Click a card to flip it and see what number it represents.</p>
+    <p>After flipping 2 cards, they will flip back over unless their backs match.</p>
+    <p>If the cards match, they stay flipped and can be used to add that digit to your phone number.</p>
+    <p>If they don't match, your match attempts counter increases by 1.</p>
+    <p>The experience automatically resets after your match attempts counter reaches the value based on your chosen difficulty.</p>
+    <p>Be careful when using matches in your phone number -- you'll need to restart since there's no backspace!</p>
+    <p>Good luck!</p>
 
-    <div class="card-container">
-      <!-- <p class="card order-0">zero</p>
-      <p class="card order-1">one</p>
-      <p class="card order-2">two</p>
-      <p class="card order-3">three</p>
-      <p class="card order-4">four</p>
-      <p class="card order-5">five</p>
-      <p class="card order-6">six</p>
-      <p class="card order-7">seven</p>
-      <p class="card order-8">eight</p>
-      <p class="card order-9">nine</p>
-
-      <p class="card order-10">zero</p>
-      <p class="card order-11">one</p>
-      <p class="card order-12">two</p>
-      <p class="card order-13">three</p>
-      <p class="card order-14">four</p>
-      <p class="card order-15">five</p>
-      <p class="card order-16">six</p>
-      <p class="card order-17">seven</p>
-      <p class="card order-18">eight</p>
-      <p class="card order-19">nine</p> -->
-    </div>
+    <div class="card-container"></div>
 
     <!-- <script src="phone-num-final.js"></script> -->
     <script>
       let resetBtn = document
         .querySelector("#reset")
-        .addEventListener("click", resetNumber);
+        .addEventListener("click", resetAll);
       let submitBtn = document
         .querySelector("#submit")
         .addEventListener("click", submitNumber);
       let phoneNum = document.querySelector("#phone-num");
-      let fails = 0;
       const cardContainer = document.querySelector(".card-container");
       const cardFaces = [
         "zero",
@@ -97,8 +63,13 @@
         0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9,
       ];
 
+      // let restart = false;
+      let pauseTime = false; // prevents flipping cards while waiting for timeout
+      let fails = 0;
+      let numFlips = 0;
+      let phoneDigNum = 0;
       let cards = [];
-      let flippedCards = [];
+      let flippedIdxs = [];
       let matchedCards = [];
 
       class Card {
@@ -109,14 +80,46 @@
           this.idx = idx;
           this.isFlipped = false;
           this.isMatched = false;
+          this.clicksAfterMatch = 0;
           this.card.addEventListener("click", () => {
-            this.flip();
-            // this.checkMatch();
+            if (!this.isFlipped && !pauseTime) {
+              this.flip();
+            } else {
+              console.log("already flipped", this.face, this.value);
+            }
           });
-        }
+          this.card.addEventListener("click", () => {
+            if (matchedCards.includes(this)) {
+              if (this.clicksAfterMatch > 0) {
+                if (phoneDigNum < 0) {
+                  console.log(
+                    "ERROR: negative phone digit num",
+                    phoneDigNum,
+                    "\nPlease reset..."
+                  );
+                } else if (phoneDigNum === 3) {
+                  phoneDigNum = 4;
+                } else if (phoneDigNum === 7) {
+                  phoneDigNum = 8;
+                } else if (phoneDigNum > 11) {
+                  alert(
+                    "UH OH! You entered too many digits. Sorry, no modulus for you. Either reset or submit."
+                  );
+                  // phoneDigNum = phoneDigNum % 11;
+                }
 
-        getValue() {
-          return this.value;
+                phoneNum.textContent = phoneNum.textContent.replace(
+                  phoneNum.textContent[phoneDigNum],
+                  this.value
+                );
+                console.log("curr phone num", phoneNum.textContent);
+                phoneDigNum++;
+                console.log("curr phone num digit", phoneDigNum);
+              }
+
+              this.clicksAfterMatch++;
+            }
+          });
         }
 
         flip() {
@@ -124,63 +127,32 @@
             this.isFlipped = false;
             this.card.classList.remove("flipped");
           } else {
-            this.isFlipped = true; // switches card's flip attribute\
+            this.isFlipped = true; // switches card's flip attribute
             this.card.classList.toggle("flipped"); // toggles flipped class
-            flippedCards.push(this);
+            numFlips++;
+            console.log("flips", numFlips);
 
-            if (flippedCards.length === 2) {
-              console.log(
-                "2 flipped cards",
-                flippedCards[0].getValue(),
-                flippedCards[1].getValue()
-              );
-              // this.checkMatch(flippedCards[0], flippedCards[1]);
-              checkMatch();
-            } else {
-              console.log("error adding flipped card");
+            flippedIdxs.push(this.idx);
+
+            if (numFlips === 2) {
+              console.log("flipped card Idxs", flippedIdxs[0], flippedIdxs[1]);
+
+              if (flippedIdxs.length === 2) {
+                console.log(
+                  "2 flipped cards with idxs:",
+                  flippedIdxs[0],
+                  flippedIdxs[1]
+                );
+                checkMatch(flippedIdxs[0], flippedIdxs[1]);
+                numFlips = 0;
+                flippedIdxs = []; // reset array of flipped card indices
+              } else {
+                console.log("error: flippedIdxs", flippedIdxs.length);
+              }
             }
           }
-          // this.isFlipped = true; // switches card's flip attribute\
-          // this.card.classList.toggle("flipped"); // toggles flipped class
-          console.log("flipped", this.face, this.value); // logs card value and face
+          console.log("flipped", this.face, this.value);
         }
-
-        addFlippedCard() {
-          if (flippedCards.length < 2) {
-            flippedCards.push(this);
-            console.log("added", this);
-          } else if (flippedCards.length === 2) {
-            console.log(
-              "2 flipped cards",
-              flippedCards[0].getValue(),
-              flippedCards[1].getValue()
-            );
-            // this.checkMatch(flippedCards[0], flippedCards[1]);
-            checkMatch();
-          } else {
-            console.log("error adding flipped card");
-          }
-          // console.log("flipped cards", flippedCards.length, flippedCards);
-        }
-
-        // checkMatch() {
-        //   console.log("checking match", flippedCards[0].value, flippedCards[1].value);
-        //   // if (flippedCards.length === 2) {
-        //     if (flippedCards[0].value === flippedCards[1].value) {
-        //       flippedCards[0].match();
-        //       flippedCards[1].match();
-        //       matchedCards.push(flippedCards[0], flippedCards[1]);
-        //     } else {
-        //       fails++;
-        //       setTimeout(() => {
-        //         console.log("not a match", flippedCards[0].value, flippedCards[1].value);
-        //         flippedCards[0].flip();
-        //         flippedCards[1].flip();
-        //       }, 1000); // 1s delay before flipping cards back over
-        //     }
-        //     flippedCards = [];
-        //   // }
-        // }
 
         match() {
           this.isMatched = true;
@@ -203,10 +175,7 @@
 
       function createCards() {
         let shuffledFaces = shuffle(cardFaces);
-        // console.log(cardFaces.length);
-        // console.log(shuffledFaces.length);
         let shuffledVals = shuffle(cardVals);
-        // console.log(shuffledVals.length);
 
         for (let i = 0; i < cardFaces.length; i++) {
           const newCard = document.createElement("div");
@@ -225,46 +194,43 @@
         }
       }
 
-      function resetNumber() {
+      function resetAll() {
+        console.log("resetting experience...");
         phoneNum.textContent = "___-___-____";
+        phoneDigNum = 0;
+        numFlips = 0;
+        fails = 0;
+        matchedCards = []; // reset matched cards array
+        cards = []; // reset array of card objects
+        cardContainer.innerHTML = ""; // remove card HTML elements
+        createCards();
       }
 
       function submitNumber() {
+        console.log("submitting num", phoneNum.textContent);
         alert("Your number is " + number.textContent);
       }
 
-      function checkMatch() {
-        console.log(
-          "checking match",
-          flippedCards[0].getValue(),
-          flippedCards[1].getValue()
-        );
-        // if (flippedCards.length === 2) {
-        if (flippedCards[0].getValue() === flippedCards[1].getValue()) {
-          console.log("matching");
-          flippedCards[0].match();
-          flippedCards[1].match();
-          matchedCards.push(flippedCards[0], flippedCards[1]);
+      function checkMatch(idx1, idx2) {
+        // console.log("checking match", cards[idx1].value, cards[idx2].value);
+        if (cards[idx1].value === cards[idx2].value) {
+          console.log("MATCH FOUND", cards[idx1].value, cards[idx2].value);
+          cards[idx1].match();
+          cards[idx2].match();
+          matchedCards.push(cards[idx1], cards[idx2]);
         } else {
           fails++;
           console.log("fails", fails);
+          pauseTime = true;
           setTimeout(() => {
-            // console.log("not a match", flippedCards[0].getValue(), flippedCards[1].getValue());
-            flippedCards[0].flip();
-            flippedCards[1].flip();
+            cards[idx1].flip();
+            cards[idx2].flip();
+            numFlips = 0; // reset num cards currently flipped
+            flippedIdxs = []; // empty stored flipped card indices
+            pauseTime = false;
           }, 1000); // 1s delay before flipping cards back over
         }
-        flippedCards = [];
-        // }
       }
-
-      // function addFlippedCard(card) {
-      //   flippedCards.push(card);
-      //   if (flippedCards.length === 2) {
-      //     // console.log("2 flipped cards", flippedCards[0].value, flippedCards[1].value);
-      //     checkMatch(flippedCards[0], flippedCards[1]);
-      //   }
-      // }
 
       createCards(); // create cards
     </script>
