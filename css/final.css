@@ -132,7 +132,7 @@ html {
 }
 #instructions-btn {
   /* border: lightgray 1px solid; */
-  
+
   width: 11rem;
   display: flex;
   justify-content: center;
@@ -165,18 +165,18 @@ html {
 }
 /* #instructions-btn:hover #instructions-icon {
 } */
- .instructions {
+.instructions {
   display: none;
- }
- .instructions.showing{
+}
+.instructions.showing {
   display: block;
- }
- .instructions.showing p {
+}
+.instructions.showing p {
   margin: 0;
   padding: 0.25rem;
   font-size: 1em;
   font-weight: normal;
- }
+}
 
 .card-container {
   border: turquoise 1px solid;

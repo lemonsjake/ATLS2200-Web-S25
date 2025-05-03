@@ -70,13 +70,13 @@ function instructionsShowing() {
 
 instructBtn.addEventListener("mouseover", () => {
   if (instructionsShowing()) {
-    instructIcon.setAttribute("src", "/icons/vis_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute("src", "../icons/vis_fill_F0F0F0_PNG.png");
     instructIcon.setAttribute(
       "alt",
       "open-eye icon meant to communicate that the instructions are currently shown"
     );
   } else {
-    instructIcon.setAttribute("src", "/icons/visOff_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute("src", "../icons/visOff_fill_F0F0F0_PNG.png");
     instructIcon.setAttribute(
       "alt",
       "closed-eye icon meant to communicate that the instructions are currently hidden"
@@ -85,13 +85,13 @@ instructBtn.addEventListener("mouseover", () => {
 });
 instructBtn.addEventListener("mouseout", () => {
   if (instructionsShowing()) {
-    instructIcon.setAttribute("src", "/icons/vis_line_333_PNG.png");
+    instructIcon.setAttribute("src", "../icons/vis_line_333_PNG.png");
     instructIcon.setAttribute(
       "alt",
       "open-eye icon meant to communicate that the instructions are currently shown"
     );
   } else {
-    instructIcon.setAttribute("src", "/icons/visOff_line_333_PNG.png");
+    instructIcon.setAttribute("src", "../icons/visOff_line_333_PNG.png");
     instructIcon.setAttribute(
       "alt",
       "closed-eye icon meant to communicate that the instructions are currently hidden"
@@ -102,7 +102,7 @@ instructBtn.addEventListener("click", () => {
   if (instructionsShowing()) {
     instructions.classList.remove("showing");
     instructBtnSpan.textContent = "Show Instructions";
-    instructIcon.setAttribute("src", "/icons/visOff_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute("src", "../icons/visOff_fill_F0F0F0_PNG.png");
     instructIcon.setAttribute(
       "alt",
       "closed-eye icon meant to communicate that the instructions are currently hidden"
@@ -111,7 +111,7 @@ instructBtn.addEventListener("click", () => {
   } else {
     instructions.classList.toggle("showing");
     instructBtnSpan.textContent = "Hide Instructions";
-    instructIcon.setAttribute("src", "/icons/vis_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute("src", "../icons/vis_fill_F0F0F0_PNG.png");
     instructIcon.setAttribute(
       "alt",
       "open-eye icon meant to communicate that the instructions are currently shown"
