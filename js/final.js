@@ -8,28 +8,8 @@ let cards = [];
 let flippedIdxs = [];
 let matchedCards = [];
 const cardContainer = document.querySelector(".card-container");
-const cardFaces = [
-  "zero",
-  "zero",
-  "one",
-  "one",
-  "two",
-  "two",
-  "three",
-  "three",
-  "four",
-  "four",
-  "five",
-  "five",
-  "six",
-  "six",
-  "seven",
-  "seven",
-  "eight",
-  "eight",
-  "nine",
-  "nine",
-];
+// const cardFaces = ["zero", "zero", "one", "one", "two", "two", "three", "three", "four", "four", "five", "five", "six", "six", "seven", "seven", "eight", "eight", "nine", "nine"];
+const numCards = 20; // total num of cards
 const cardVals = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9];
 
 let resetBtn = document
@@ -124,7 +104,8 @@ instructBtn.addEventListener("click", () => {
 class Card {
   constructor(card, face, value, idx) {
     this.card = card;
-    this.face = face.textContent; // card face (zero-nine)
+    // this.face = face.textContent; // card face (zero-nine)
+    this.face = face.textContent;
     this.value = value.textContent; // card value (0-9)
     this.idx = idx;
     this.isFlipped = false;
@@ -134,7 +115,12 @@ class Card {
       if (!this.isFlipped && !pauseTime) {
         this.flip();
       } else {
-        console.log("already flipped", this.face, this.value);
+        console.log(
+          "already flipped card",
+          this.idx,
+          "holding value",
+          this.value
+        );
       }
     });
     this.card.addEventListener("click", () => {
@@ -200,7 +186,8 @@ class Card {
         }
       }
     }
-    console.log("flipped", this.face, this.value);
+    // console.log("flipped", this.face, this.value);
+    console.log("flipped card", this.idx, "holding value", this.value);
   }
 
   match() {
@@ -234,15 +221,16 @@ function shuffle(nums) {
 }
 
 function createCards() {
-  let shuffledFaces = shuffle(cardFaces);
+  // let shuffledFaces = shuffle(cardFaces);
   let shuffledVals = shuffle(cardVals);
 
-  for (let i = 0; i < cardFaces.length; i++) {
+  for (let i = 0; i < numCards; i++) {
     const newCard = document.createElement("div");
-    const cardFace = document.createElement("p");
-    const cardVal = document.createElement("p");
+    const cardFace = document.createElement("span");
+    const cardVal = document.createElement("span");
     const idx = i;
-    cardFace.textContent = shuffledFaces[i];
+    // cardFace.textContent = shuffledFaces[i];
+    cardFace.textContent = "";
     cardFace.classList.add("card-face");
     cardVal.textContent = shuffledVals[i];
     cardVal.classList.add("card-back");
@@ -304,12 +292,6 @@ function checkMatch(idx1, idx2) {
     }, 1000); // 1s delay before flipping cards back over
   }
 }
-
-//
-//
-
-//
-//
 
 createCards();
 updateActiveMode("med-mode"); // set default active difficulty mode
