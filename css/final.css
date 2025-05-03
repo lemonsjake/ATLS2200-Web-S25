@@ -22,7 +22,7 @@ html {
 }
 #phone-num-title {
   /* border: red 1px solid; */
-  
+
   font-size: 2.25em;
   font-weight: 650;
   margin: 0;
@@ -43,14 +43,15 @@ html {
 
 .resetSubmit {
   /* border: red 1px solid; */
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0.5rem 0;
   /* padding: 0; */
 }
-#reset, #submit {
+#reset,
+#submit {
   width: 8rem;
   background-color: #f0f0f0;
   color: #333;
@@ -62,7 +63,8 @@ html {
   border: #333 solid 0.1rem;
   border-radius: 3rem;
 }
-#reset:hover, #submit:hover {
+#reset:hover,
+#submit:hover {
   background-color: #333;
   color: #f0f0f0;
   font-weight: 650;
@@ -118,18 +120,63 @@ html {
   /* position: relative; */
 }
 
-.instructions {
-  /* border: violet 1px solid; */
+.instructionsContainer {
+  border: red 1px solid;
 
-  margin: 1rem 0 0 0;
-  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+  /* padding: 0.5rem 0.25rem; */
 }
-.instructions p {
+#instructions-btn {
+  /* border: lightgray 1px solid; */
+  
+  width: 11rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f0f0f0;
+  color: #333;
+  /* font-family: "Urbanist", sans-serif; */
+  font-size: 0.9rem;
+  font-weight: 450;
+  margin: 0 0 0.25rem 0;
+  padding: 0.5rem 1.15rem;
+  border: #333 solid 0.1rem;
+  border-radius: 3rem;
+}
+#instructions-icon {
+  /* border: red 1px solid; */
+
+  height: 1.5rem;
+  width: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 0 0 0.8rem;
+}
+#instructions-btn:hover {
+  background-color: #333;
+  color: #f0f0f0;
+  font-weight: 650;
+  cursor: pointer;
+}
+/* #instructions-btn:hover #instructions-icon {
+} */
+ .instructions {
+  display: none;
+ }
+ .instructions.showing{
+  display: block;
+ }
+ .instructions.showing p {
   margin: 0;
   padding: 0.25rem;
   font-size: 1em;
   font-weight: normal;
-}
+ }
 
 .card-container {
   border: turquoise 1px solid;
@@ -143,8 +190,8 @@ html {
 
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr); /* !! */
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(4, 1fr);
   gap: 0;
   justify-content: center;
   justify-items: center;
@@ -199,15 +246,42 @@ html {
   font-weight: 800;
 }
 
-/* @media (max-width: 674px) {
+@media (min-width: 1112px) {
+  .card-container {
+    grid-template-columns: repeat(10, auto);
+    grid-template-rows: repeat(2, auto);
+  }
+}
+@media (max-width: 560px) {
   .card {
-    width: 5.5em;
-    height: 5.5em;
-  } */
-@media (max-width: 454px) {
+    width: 4.5em;
+    height: 4.5em;
+    margin: 0.65em;
+  }
+}
+@media (max-width: 500px) {
   .card {
     width: 4em;
     height: 4em;
     margin: 0.5em;
+  }
+}
+@media (max-width: 440px) {
+  .card-container {
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
+  }
+}
+@media (max-width: 420px) {
+  .difficulty {
+    display: flex;
+    flex-direction: column;
+    margin: 1.75rem 0 0rem 0;
+  }
+  .diffMode {
+    margin: 0.25rem 0;
+  }
+  #diff-container-title {
+    margin: 0 0 0.4rem 0;
   }
 }

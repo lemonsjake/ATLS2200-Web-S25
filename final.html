@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/final.css" />
+    <link rel="stylesheet" href="/css/final.css" />
     <title>Web JS Final - Frustrating Phone Number - Card Matching</title>
   </head>
   <body>
@@ -39,41 +39,46 @@
       </div>
     </div>
 
-    <button id="instructions-btn" class="instructionsToggle">Instructions</button>
-    <div class="instructionsInfo">
-      <p>Click a card to flip it and see what number it represents.</p>
-      <p>
-        After flipping 2 cards, they will flip back over unless their backs
-        match.
-      </p>
-      <p>
-        If the cards match, they stay flipped and can be used to add that digit
-        to your phone number.
-      </p>
-      <p>If they don't match, your match attempts counter increases by 1.</p>
-      <p>
-        The experience automatically resets after your match attempts counter
-        reaches the value based on your chosen difficulty.
-      </p>
-      <p>
-        Be careful when using matches in your phone number -- you'll need to
-        restart since there's no backspace!
-      </p>
-      <p>Good luck!</p>
+    <div class="instructionsContainer">
+      <div id="instructions-btn">
+        <span id="instructions-btn-span">Show Instructions</span><img
+          id="instructions-icon"
+          src="/icons/visOff_line_333_PNG.png"
+          alt="crossed-out icon of an eye meant to communicate that the instructions are currently hidden"
+        />
+      </div>
+      <div class="instructions">
+        <p>Click a card to flip it and see what number it represents.</p>
+        <p>
+          After flipping 2 cards, they will flip back over unless their backs
+          match.
+        </p>
+        <p>
+          If the cards match, they stay flipped and can be used to add that
+          digit to your phone number.
+        </p>
+        <p>If they don't match, your match attempts counter increases by 1.</p>
+        <p>
+          The experience automatically resets after your match attempts counter
+          reaches the value based on your chosen difficulty.
+        </p>
+        <p>
+          Be careful when using matches in your phone number -- you'll need to
+          restart since there's no backspace!
+        </p>
+        <p>Good luck!</p>
+      </div>
     </div>
 
     <div class="card-container"></div>
 
-    <script src="./js/final.js"></script>
+    <script src="/js/final.js"></script>
   </body>
 </html>
 
-
 <!--
   TO-DO
-  - Always even number of rows/cols
   - Add card background to remove/shorten instructions
-    - ?? Add instructions button to show/hide instructions
   - FIX SUBMIT BUTTON (didn't work for Anthony, CHECK WEBKIT?)
   - ?? Display match attempts
     - e.g., "11/12 attempted matches" OR "1/12 match attempts remaining"

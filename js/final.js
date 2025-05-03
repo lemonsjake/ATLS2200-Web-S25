@@ -39,22 +39,86 @@ let submitBtn = document
   .querySelector("#submit")
   .addEventListener("click", submitNumber);
 let phoneNum = document.querySelector("#phone-num");
+let instructions = document.querySelector(".instructions");
+let instructBtn = document.querySelector("#instructions-btn");
+let instructBtnSpan = document.querySelector("#instructions-btn-span");
+let instructIcon = document.querySelector("#instructions-icon");
+
 document.querySelector("#easy-mode").addEventListener("click", () => {
   failLimit = 16; //failLim for easy/annoying difficulty
   updateActiveMode("easy-mode");
   console.log("Difficulty set to 'annoying'. Fail limit:", failLimit);
 });
-
 document.querySelector("#med-mode").addEventListener("click", () => {
   failLimit = 12; // failLim for med/frustrating difficulty
   updateActiveMode("med-mode");
   console.log("Difficulty set to 'frustrating'. Fail limit:", failLimit);
 });
-
 document.querySelector("#hard-mode").addEventListener("click", () => {
   failLimit = 8; // failLim for hard/ummm difficulty
   updateActiveMode("hard-mode");
   console.log("Difficulty set to 'ummm...'. Fail limit:", failLimit);
+});
+
+function instructionsShowing() {
+  if (instructions.classList.contains("showing")) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+instructBtn.addEventListener("mouseover", () => {
+  if (instructionsShowing()) {
+    instructIcon.setAttribute("src", "/icons/vis_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute(
+      "alt",
+      "open-eye icon meant to communicate that the instructions are currently shown"
+    );
+  } else {
+    instructIcon.setAttribute("src", "/icons/visOff_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute(
+      "alt",
+      "closed-eye icon meant to communicate that the instructions are currently hidden"
+    );
+  }
+});
+instructBtn.addEventListener("mouseout", () => {
+  if (instructionsShowing()) {
+    instructIcon.setAttribute("src", "/icons/vis_line_333_PNG.png");
+    instructIcon.setAttribute(
+      "alt",
+      "open-eye icon meant to communicate that the instructions are currently shown"
+    );
+  } else {
+    instructIcon.setAttribute("src", "/icons/visOff_line_333_PNG.png");
+    instructIcon.setAttribute(
+      "alt",
+      "closed-eye icon meant to communicate that the instructions are currently hidden"
+    );
+  }
+});
+instructBtn.addEventListener("click", () => {
+  if (instructionsShowing()) {
+    instructions.classList.remove("showing");
+    instructBtnSpan.textContent = "Show Instructions";
+    instructIcon.setAttribute("src", "/icons/visOff_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute(
+      "alt",
+      "closed-eye icon meant to communicate that the instructions are currently hidden"
+    );
+    console.log("instructions hidden");
+  } else {
+    instructions.classList.toggle("showing");
+    instructBtnSpan.textContent = "Hide Instructions";
+    instructIcon.setAttribute("src", "/icons/vis_fill_F0F0F0_PNG.png");
+    instructIcon.setAttribute(
+      "alt",
+      "open-eye icon meant to communicate that the instructions are currently shown"
+    );
+    console.log("instructions showing");
+  }
+  instructBtn.style.width = "fit-content";
 });
 
 class Card {
@@ -240,6 +304,12 @@ function checkMatch(idx1, idx2) {
     }, 1000); // 1s delay before flipping cards back over
   }
 }
+
+//
+//
+
+//
+//
 
 createCards();
 updateActiveMode("med-mode"); // set default active difficulty mode
