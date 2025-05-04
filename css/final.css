@@ -217,7 +217,7 @@ html {
 }
 
 .card.matched {
-  border: 0.2rem solid violet;
+  border: 0.15rem solid violet;
   font-size: 2rem;
   font-weight: 700;
 }
