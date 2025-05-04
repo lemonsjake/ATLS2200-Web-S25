@@ -24,20 +24,30 @@ let instructBtn = document.querySelector("#instructions-btn");
 let instructBtnSpan = document.querySelector("#instructions-btn-span");
 let instructIcon = document.querySelector("#instructions-icon");
 
+function checkFailLim() {
+  if (fails >= failLimit) {
+    alert("Match attempt limit reached!");
+    resetAll();
+  }
+}
+
 document.querySelector("#easy-mode").addEventListener("click", () => {
   failLimit = 16; //failLim for easy/annoying difficulty
   updateActiveMode("easy-mode");
   console.log("Difficulty set to 'annoying'. Fail limit:", failLimit);
+  checkFailLim();
 });
 document.querySelector("#med-mode").addEventListener("click", () => {
   failLimit = 12; // failLim for med/frustrating difficulty
   updateActiveMode("med-mode");
   console.log("Difficulty set to 'frustrating'. Fail limit:", failLimit);
+  checkFailLim();
 });
 document.querySelector("#hard-mode").addEventListener("click", () => {
   failLimit = 8; // failLim for hard/ummm difficulty
   updateActiveMode("hard-mode");
   console.log("Difficulty set to 'ummm...'. Fail limit:", failLimit);
+  checkFailLim();
 });
 
 function instructionsShowing() {
@@ -250,7 +260,7 @@ function resetAll() {
   fails = 0;
   matchedCards = []; // reset matched cards array
   cards = []; // reset array of card objects
-  cardContainer.innerHTML = ""; // remove card HTML elements
+  cardContainer.innerHTML = ""; // remove card HTML elems
   createCards();
   updateActiveMode("med-mode");
 }
@@ -276,37 +286,19 @@ function checkMatch(idx1, idx2) {
     cards[idx1].match();
     cards[idx2].match();
     matchedCards.push(cards[idx1], cards[idx2]);
-    //
-    //
     numFlips = 0;
     flippedIdxs = [];
-    //
-    //
   } else {
     fails++;
     console.log("fails", fails);
     pauseTime = true;
-    // requestAnimationFrame(() => {
-    //   cards[idx1].flip();
-    //   cards[idx2].flip();
-    //   numFlips = 0; // reset num cards currently flipped
-    //   flippedIdxs = []; // empty stored flipped card indices
-    //   pauseTime = false;
-    // });
-    // if (fails >= failLimit) {
-    //   alert("Match attempt limit reached!");
-    //   resetAll();
-    // }
     setTimeout(() => {
       cards[idx1].flip();
       cards[idx2].flip();
       numFlips = 0; // reset num cards currently flipped
       flippedIdxs = []; // empty stored flipped card indices
       pauseTime = false;
-      if (fails >= failLimit) {
-        alert("Match attempt limit reached!");
-        resetAll();
-      }
+      checkFailLim();
     }, 1000); // 1s delay before flipping cards back over
   }
 }
