@@ -262,7 +262,8 @@ function submitNumber() {
     alert("Incomplete phone number!");
   } else {
     console.log("submitting num", phoneNum.textContent);
-    alert("Your number is " + phoneNumber.textContent);
+    alert("Your number is " + phoneNum.textContent);
+    resetAll();
   }
 
   return;
