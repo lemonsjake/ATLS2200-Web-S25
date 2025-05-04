@@ -121,6 +121,7 @@ class Card {
     this.isFlipped = false;
     this.isMatched = false;
     this.clicksAfterMatch = 0;
+    this.partnerCard = card;
     this.card.addEventListener("click", () => {
       if (!this.isFlipped && !pauseTime) {
         this.flip();
@@ -135,7 +136,7 @@ class Card {
     });
     this.card.addEventListener("click", () => {
       if (matchedCards.includes(this)) {
-        if (this.clicksAfterMatch > 0) {
+        if ((this.clicksAfterMatch > 0) || (this.partnerCard.clicksAfterMatch > 0)) {
           if (phoneDigNum < 0) {
             console.log(
               "ERROR: negative phone digit num",
@@ -286,6 +287,8 @@ function checkMatch(idx1, idx2) {
     cards[idx1].match();
     cards[idx2].match();
     matchedCards.push(cards[idx1], cards[idx2]);
+    cards[idx1].partnerCard = cards[idx2];
+    cards[idx2].partnerCard = cards[idx1];
     numFlips = 0;
     flippedIdxs = [];
   } else {
