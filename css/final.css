@@ -212,9 +212,9 @@ html {
   margin: 0.8rem;
   border: 0.15rem #333 solid;
   border-radius: 0.45rem;
-  /* -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; */
+  -webkit-transition: transform ease-in-out 0.5s; /* For Safari */
   transition: transform ease-in-out 0.5s;
+  -webkit-transform-style: preserve-3d; /* For Safari */
   transform-style: preserve-3d;
   cursor: pointer;
 }
@@ -227,7 +227,7 @@ html {
   width: 100%;
   height: 100%;
   /* translate:-50%; */
-  -webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* For Safari */
   backface-visibility: hidden;
   display: flex;
   justify-content: center;
@@ -249,10 +249,12 @@ html {
 .card-back {
   /* border: lightgreen 1px solid; */
 
+  -webkit-transform: rotateY(180deg); /* For Safari */
   transform: rotateY(180deg);
 }
 
 .card.flipped {
+  -webkit-transform: rotateY(180deg); /* For Safari */
   transform: rotateY(180deg);
   box-shadow: 0 0.25rem 0.75rem 0 rgba(0, 0, 0, 0.5);
 }
