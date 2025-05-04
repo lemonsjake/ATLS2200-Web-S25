@@ -285,28 +285,28 @@ function checkMatch(idx1, idx2) {
     fails++;
     console.log("fails", fails);
     pauseTime = true;
-    requestAnimationFrame(() => {
-      cards[idx1].flip();
-      cards[idx2].flip();
-      numFlips = 0; // reset num cards currently flipped
-      flippedIdxs = []; // empty stored flipped card indices
-      pauseTime = false;
-    });
-    if (fails >= failLimit) {
-      alert("Match attempt limit reached!");
-      resetAll();
-    }
-    // setTimeout(() => {
+    // requestAnimationFrame(() => {
     //   cards[idx1].flip();
     //   cards[idx2].flip();
     //   numFlips = 0; // reset num cards currently flipped
     //   flippedIdxs = []; // empty stored flipped card indices
     //   pauseTime = false;
-    //   if (fails >= failLimit) {
-    //     alert("Match attempt limit reached!");
-    //     resetAll();
-    //   }
-    // }, 1000); // 1s delay before flipping cards back over
+    // });
+    // if (fails >= failLimit) {
+    //   alert("Match attempt limit reached!");
+    //   resetAll();
+    // }
+    setTimeout(() => {
+      cards[idx1].flip();
+      cards[idx2].flip();
+      numFlips = 0; // reset num cards currently flipped
+      flippedIdxs = []; // empty stored flipped card indices
+      pauseTime = false;
+      if (fails >= failLimit) {
+        alert("Match attempt limit reached!");
+        resetAll();
+      }
+    }, 1000); // 1s delay before flipping cards back over
   }
 }
 
